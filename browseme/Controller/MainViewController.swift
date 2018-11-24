@@ -9,33 +9,44 @@
 import UIKit
 import WebKit
 
-class MainViewController: UIViewController, WKNavigationDelegate {
+class MainViewController: UIViewController, WKNavigationDelegate, UISearchBarDelegate {
     
     private var mainView: UIView!
     private var webView: WKWebView!
     private var searchController: UISearchController!
     
     override func loadView() {
-//        mainView = MainView(frame: UIScreen.main.bounds)
-//        self.view.addSubview(mainView)
+        //        mainView = MainView(frame: UIScreen.main.bounds)
+        //        self.view.addSubview(mainView)
         webView = WKWebView()
         webView.navigationDelegate = self
         view = webView
         
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: "https://www.apple.com")!
-        webView.load(URLRequest(url: url))
+        RedirectTo("https://www.apple.com")
         webView.allowsBackForwardNavigationGestures = true
         
         SetControllerDefaults()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    func RedirectTo(_ link: String){
+        let url = URL(string: link)!
+        webView.load(URLRequest(url: url))
+    }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let urlString = searchBar.text
+        if let urlString = urlString {
+            RedirectTo(urlString)
+        }
+        
+        searchBar.resignFirstResponder()
+    }
     
     func SetControllerDefaults(){
         
@@ -48,10 +59,12 @@ class MainViewController: UIViewController, WKNavigationDelegate {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-    }
+        searchController.searchBar.delegate = self
         
-
-
+    }
+    
+    
+    
 }
 
 extension MainViewController: UISearchResultsUpdating {

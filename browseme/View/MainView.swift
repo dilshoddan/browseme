@@ -37,6 +37,7 @@ class MainView: UIView {
     func render(){
         self.sv([segmentedControl, webView])
         self.layout(
+            50,
             |-webView-|,
             |-segmentedControl-|
         )
