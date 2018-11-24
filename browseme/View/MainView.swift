@@ -8,13 +8,15 @@
 
 import UIKit
 import Stevia
+import WebKit
 
 class MainView: UIView {
+    private var segmentedControl: UISegmentedControl!
+    public var webView: WKWebView!
     
-    private var okButton: UIButton!
     
     override init(frame: CGRect) {
-        super.init(frame:frame)
+        super.init(frame: frame)
         SetControlDefaults()
         render()
     }
@@ -25,14 +27,20 @@ class MainView: UIView {
     
     func SetControlDefaults(){
         self.backgroundColor = .white
-        okButton = UIButton()
-        okButton.setTitle("OK", for: .normal)
-        okButton.backgroundColor = #colorLiteral(red: 0.5496927479, green: 0.3474869049, blue: 1, alpha: 1)
+        
+        segmentedControl = UISegmentedControl(items: ["Reports", "Chat"])
+        segmentedControl.tintColor = .black
+        
+        webView = WKWebView()
         
     }
     func render(){
-        self.sv(okButton)
-        okButton.height(10%).width(30%).centerHorizontally().centerVertically()
+        self.sv([segmentedControl, webView])
+        self.layout(
+            |-webView-|,
+            |-segmentedControl-|
+        )
+        
     }
     
     
