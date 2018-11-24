@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, WKNavigationDelegate {
     
     private var mainView: UIView!
     private var webView: WKWebView!
@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
         mainView = MainView(frame: UIScreen.main.bounds)
         self.view.addSubview(mainView)
         webView = WKWebView()
-        //webView.navigationDelegate = self
+        webView.navigationDelegate = self
         mainView = webView
         
     }
