@@ -8,26 +8,36 @@
 
 import UIKit
 import WebKit
+import Stevia
+
 
 class MainViewController: UIViewController, WKNavigationDelegate, UISearchBarDelegate {
     
-    private var mainView: UIView!
+//    private var mainView: UIView!
+    private var segmentedControl: UISegmentedControl!
     private var webView: WKWebView!
     private var searchController: UISearchController!
     
-    override func loadView() {
-        //        mainView = MainView(frame: UIScreen.main.bounds)
-        //        self.view.addSubview(mainView)
-        webView = WKWebView()
-        webView.navigationDelegate = self
-        view = webView
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        RedirectTo("https://www.apple.com")
+        segmentedControl = UISegmentedControl()
+        segmentedControl = UISegmentedControl(items: ["Tweets", "Media", "Likes"])
+        segmentedControl.tintColor = .black
+        segmentedControl.backgroundColor = .white
+        
+        view.backgroundColor = .white
+        webView = WKWebView(frame: view.frame)
+        webView.navigationDelegate = self
+        self.view.sv([webView, segmentedControl])
+        webView.height(95%).width(100%).centerHorizontally()
+        segmentedControl.height(5%).width(90%).centerHorizontally()
+        segmentedControl.Bottom == self.view.Bottom
+        
+
+        
+        //RedirectTo("https://www.amazon.com")
         webView.allowsBackForwardNavigationGestures = true
         
         SetControllerDefaults()
@@ -54,8 +64,8 @@ class MainViewController: UIViewController, WKNavigationDelegate, UISearchBarDel
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "https://www.apple.com"
-        searchController.searchBar.text = "https://www.apple.com"
+        searchController.searchBar.placeholder = "https://www.amazon.com"
+        searchController.searchBar.text = "https://www.amazon.com"
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
