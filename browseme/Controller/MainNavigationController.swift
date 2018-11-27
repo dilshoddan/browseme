@@ -15,6 +15,7 @@ class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hero.isEnabled = true
+        isNavigationBarHidden = true
         // Do any additional setup after loading the view.
     }
     
