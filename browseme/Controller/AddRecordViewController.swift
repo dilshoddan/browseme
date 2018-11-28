@@ -1,5 +1,5 @@
 //
-//  NotificationViewController.swift
+//  AddRecordViewController.swift
 //  browseme
 //
 //  Created by Admin on 11/28/18.
@@ -11,9 +11,9 @@ import Hero
 import Stevia
 import FirebaseDatabase
 
-class NotificationsViewController: UIViewController {
+class AddRecordViewController: UIViewController {
 
-    private var notificationsView: NotificationsView!
+    private var addRecordView: AddRecordView!
     private var databaseReference: DatabaseReference!
     private var firebaseWorker: FirebaseWorker!
     
@@ -37,9 +37,9 @@ class NotificationsViewController: UIViewController {
     }
     
     func render(){
-        view.sv(notificationsView)
-        notificationsView.height(100%).width(100%).centerInContainer()
-        notificationsView.updateConstraints()
+        view.sv(addRecordView)
+        addRecordView.height(100%).width(100%).centerInContainer()
+        addRecordView.updateConstraints()
     }
 
 }
