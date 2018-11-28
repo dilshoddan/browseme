@@ -11,12 +11,13 @@ import Stevia
 import Hero
 
 class NotificationsView: UIView {
-
-//    private var segmentedControl: UISegmentedControl!
-//    public var webView: WKWebView!
-    public var label: UILabel!
-    public var textField: UITextField!
+    
+    //    private var segmentedControl: UISegmentedControl!
     public var shouldSetupConstraints: Bool!
+    public var dateLabel: UILabel!
+    public var imageView: UIImageView!
+    public var textView: UITextView!
+    
     
     
     override init(frame: CGRect) {
@@ -34,28 +35,33 @@ class NotificationsView: UIView {
     func SetControlDefaults(){
         self.backgroundColor = .white
         
-        label = UILabel()
-        label.text = "Data:"
-        textField = UITextField()
-        textField.text = "Placeholder"
-        textField.backgroundColor = .white
-        textField.borderStyle = .roundedRect
-        textField.isEnabled = true
-        textField.isUserInteractionEnabled = true
+        dateLabel = UILabel()
+        dateLabel.text = Date().ToString(dateFormat: "dd-MMM-yyyy")
+        dateLabel.tintColor = .black
+        
+        
+        imageView = UIImageView()
+        imageView.backgroundColor = #colorLiteral(red: 0.5183775907, green: 0.5156218294, blue: 0.5049525617, alpha: 1)
+        textView = UITextView()
+        textView.isUserInteractionEnabled = false
+        
         
         
     }
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([textField, label])
-            label.height(10%).width(80%).centerHorizontally()
-            textField.height(10%).width(80%).centerHorizontally()
+            self.sv([dateLabel, imageView, textView])
+            dateLabel.height(10%).width(80%).centerHorizontally()
+            imageView.height(30%).width(100%).centerHorizontally()
+            textView.height(70%).width(100%).centerHorizontally()
             self.layout(
-                |-label-|,
-                |-textField-|
+                150,
+                |-dateLabel-|,
+                |-imageView-|,
+                |-textView-|
             )
-            label.Bottom == self.CenterY
+            dateLabel.Bottom == imageView.CenterY
             
         }
         super.updateConstraints()

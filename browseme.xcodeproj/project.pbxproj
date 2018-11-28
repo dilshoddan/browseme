@@ -19,6 +19,7 @@
 		841AB34521AE79D100CDEBC5 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AB34421AE79D100CDEBC5 /* NotificationsView.swift */; };
 		841AB34721AE7F4A00CDEBC5 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AB34621AE7F4900CDEBC5 /* NotificationsViewController.swift */; };
 		841AB34921AE8B8A00CDEBC5 /* FirebaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AB34821AE8B8A00CDEBC5 /* FirebaseWorker.swift */; };
+		841AB34B21AEB81500CDEBC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AB34A21AEB81500CDEBC5 /* Extensions.swift */; };
 		842EC08F21A950D0003E2B7C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EC08E21A950D0003E2B7C /* MainNavigationController.swift */; };
 		8436F83C21AD83800061763B /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436F83B21AD83800061763B /* ColorConstants.swift */; };
 		844CD8E621AE713B003691D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 844CD8E521AE713B003691D7 /* GoogleService-Info.plist */; };
@@ -64,6 +65,7 @@
 		841AB34421AE79D100CDEBC5 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		841AB34621AE7F4900CDEBC5 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		841AB34821AE8B8A00CDEBC5 /* FirebaseWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseWorker.swift; path = browseme/Controller/FirebaseWorker.swift; sourceTree = SOURCE_ROOT; };
+		841AB34A21AEB81500CDEBC5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = browseme/Controller/Extensions.swift; sourceTree = SOURCE_ROOT; };
 		842EC08E21A950D0003E2B7C /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		8436F83B21AD83800061763B /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		844CD8E521AE713B003691D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				841AB34821AE8B8A00CDEBC5 /* FirebaseWorker.swift */,
+				841AB34A21AEB81500CDEBC5 /* Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84100F1A21A937E700A24666 /* MainViewController.swift in Sources */,
+				841AB34B21AEB81500CDEBC5 /* Extensions.swift in Sources */,
 				84043EAC21A9395800349BD2 /* MainView.swift in Sources */,
 				841AB34921AE8B8A00CDEBC5 /* FirebaseWorker.swift in Sources */,
 				842EC08F21A950D0003E2B7C /* MainNavigationController.swift in Sources */,

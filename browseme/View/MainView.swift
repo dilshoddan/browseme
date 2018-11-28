@@ -20,6 +20,7 @@ class MainView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         shouldSetupConstraints = true
         SetControlDefaults()
         updateConstraints()

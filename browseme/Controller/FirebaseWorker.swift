@@ -23,13 +23,13 @@ class FirebaseWorker{
         databaseReference.child("name").childByAutoId().setValue("Richard")
     }
     
-    public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textField: UITextField){
+    public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textField: UITextView){
         //var dbHandle =
         self.returnedData = []
         databaseReference.child("name").observe(.childAdded, with: {(data) in
             let name = (data.value as? String)!
             self.returnedData.append(name)
-            textField.text = textField.text! + name
+            textField.text = name
         })
     }
 }

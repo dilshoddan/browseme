@@ -23,7 +23,7 @@ class MainViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         SetControllerDefaults()
         render()
-        firebaseWorked.CreateRecordIntoFirebase(databaseReference)
+//        firebaseWorked.CreateRecordIntoFirebase(databaseReference)
     }
     
     
