@@ -33,3 +33,27 @@ class FirebaseWorker{
         })
     }
 }
+
+//import below JSON structure to firebase
+//    // The root of the tree
+//    {
+//        // grocery-items
+//        "grocery-items": {
+//            
+//            // grocery-items/milk
+//            "milk": {
+//                
+//                // grocery-items/milk/name
+//                "name": "Milk",
+//                
+//                // grocery-items/milk/addedByUser
+//                "addedByUser": "David"
+//            },
+//            
+//            "pizza": {
+//                "name": "Pizza",
+//                "addedByUser": "Alice"
+//            },
+//        }
+//}
+
