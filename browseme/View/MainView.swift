@@ -35,6 +35,7 @@ class MainView: UIView {
         segmentedControl = UISegmentedControl()
         segmentedControl = UISegmentedControl(items: ["Notifications", "Live Chat"])
         segmentedControl.tintColor = ColorConstants.segmentedColorBackground
+        segmentedControl.isMomentary = true
 //        segmentedControl.backgroundColor = ColorConstants.segmentedColorBackground
         
         self.backgroundColor = .white

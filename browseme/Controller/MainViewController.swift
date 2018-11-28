@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 import Stevia
 import FirebaseDatabase
+import Hero
 
 
 class MainViewController: UIViewController, WKNavigationDelegate {
@@ -21,6 +22,8 @@ class MainViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hero.isEnabled = true
         SetControllerDefaults()
         render()
 //        firebaseWorked.CreateRecordIntoFirebase(databaseReference)
@@ -41,13 +44,13 @@ class MainViewController: UIViewController, WKNavigationDelegate {
         mainView.webView.navigationDelegate = self
         RedirectTo("https://www.greenmatch.ru")
         
-        mainView.segmentedControl.addTarget(self, action: #selector(SegmentedControlValueChanged(segment:)), for: .valueChanged)
+        mainView.segmentedControl.addTarget(self, action: #selector(SegmentedControlValueChanged(selectedControl:)), for: .valueChanged)
         
         firebaseWorked = FirebaseWorker()
     }
     
-    @objc func SegmentedControlValueChanged(segment: UISegmentedControl){
-        switch segment.selectedSegmentIndex {
+    @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){
+        switch selectedControl.selectedSegmentIndex {
         case 0:
             let notificationsViewController = NotificationsViewController()
             navigationController?.pushViewController(notificationsViewController, animated: true)

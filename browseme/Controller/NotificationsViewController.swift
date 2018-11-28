@@ -22,6 +22,7 @@ class NotificationsViewController: UIViewController {
         super.viewDidLoad()
         
         hero.isEnabled = true
+        
         SetControlDefaults()
         render()
         firebaseWorker.ReadFirebaseNotificationData(with: databaseReference, writeTo: notificationsView.textView)

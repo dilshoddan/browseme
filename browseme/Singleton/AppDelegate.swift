@@ -21,7 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
             let mainViewController = MainViewController()
-            mainNavigationController = MainNavigationController(rootViewController: mainViewController)
+//            let notificationsController = NotificationsViewController()
+            mainNavigationController = MainNavigationController()
+            mainNavigationController.viewControllers = [mainViewController]
             window.rootViewController =  mainNavigationController
             window.makeKeyAndVisible()
         }
