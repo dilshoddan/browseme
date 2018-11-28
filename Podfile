@@ -6,6 +6,8 @@ target 'browseme' do
   use_frameworks!
     pod "SteviaLayout", "4.4.0"
     pod "Hero", "1.4.0"
+    pod "Firebase/Core"
+    pod "Firebase/Database"
 
   # Pods for browseme
 

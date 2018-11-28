@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1980EF8E508CC55B7BC0B2DE6308473B"
+               BlueprintIdentifier = "34D24483F0BC6044E6641D64DFF632FB"
                BuildableName = "Stevia.framework"
                BlueprintName = "SteviaLayout"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1980EF8E508CC55B7BC0B2DE6308473B"
+            BlueprintIdentifier = "34D24483F0BC6044E6641D64DFF632FB"
             BuildableName = "Stevia.framework"
             BlueprintName = "SteviaLayout"
             ReferencedContainer = "container:Pods.xcodeproj">

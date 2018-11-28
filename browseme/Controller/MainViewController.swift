@@ -9,11 +9,12 @@
 import UIKit
 import WebKit
 import Stevia
+import FirebaseDatabase
 
 
 class MainViewController: UIViewController, WKNavigationDelegate, UISearchBarDelegate {
     
-//    private var mainView: UIView!
+    private var databaseReference: DatabaseReference!
     private var segmentedControl: UISegmentedControl!
     private var webView: WKWebView!
     private var searchController: UISearchController!
@@ -23,9 +24,22 @@ class MainViewController: UIViewController, WKNavigationDelegate, UISearchBarDel
         super.viewDidLoad()
         SetControllerDefaults()
         render()
+        CreateRecordIntoFirebase()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    func CreateRecordIntoFirebase(){
+        databaseReference = Database.database().reference()
+        databaseReference.child("name").childByAutoId().setValue("Nigel")
+        databaseReference.child("name").childByAutoId().setValue("Richard")
+    }
+    
+    func render(){
+        self.view.sv([webView, segmentedControl])
+        webView.height(100%).width(100%).centerHorizontally()
+        segmentedControl.height(5%).width(90%).centerHorizontally()
+        segmentedControl.Bottom == self.view.Bottom
+    }
     
     
     func SetControllerDefaults(){
@@ -46,6 +60,7 @@ class MainViewController: UIViewController, WKNavigationDelegate, UISearchBarDel
         segmentedControl = UISegmentedControl(items: ["Notifications", "Live Chat"])
         segmentedControl.tintColor = .black
         segmentedControl.backgroundColor = ColorConstants.segmentedColorBackground
+        segmentedControl.addTarget(self, action: #selector(SegmentedControlValueChanged), for: .touchUpInside)
         
         
         view.backgroundColor = .white
@@ -55,12 +70,10 @@ class MainViewController: UIViewController, WKNavigationDelegate, UISearchBarDel
         webView.allowsBackForwardNavigationGestures = true
     }
     
-    func render(){
-        self.view.sv([webView, segmentedControl])
-        webView.height(100%).width(100%).centerHorizontally()
-        segmentedControl.height(5%).width(90%).centerHorizontally()
-        segmentedControl.Bottom == self.view.Bottom
+    @objc func SegmentedControlValueChanged(){
+        navigationController?.pushViewController(NotificationViewController(), animated: true)
     }
+    
     
     func RedirectTo(_ link: String){
         let url = URL(string: link)!
