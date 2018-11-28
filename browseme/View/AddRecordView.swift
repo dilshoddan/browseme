@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Hero
+import Stevia
 
 class AddRecordView: UIView {
 
@@ -17,7 +19,7 @@ class AddRecordView: UIView {
     
     public var datePicker: UIDatePicker!
     public var imagePicker: UIImagePickerController!
-    public var textView: UITextView!
+    public var textViewEditor: UITextView!
     
     
     

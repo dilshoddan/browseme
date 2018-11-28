@@ -24,7 +24,7 @@ class AddRecordViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         SetControlDefaults()
         render()
-        firebaseWorker.ReadFirebaseNotificationData(with: databaseReference, writeTo: notificationsView.textView)
+        
     }
     
     
@@ -32,7 +32,7 @@ class AddRecordViewController: UIViewController {
     func SetControlDefaults(){
         databaseReference = Database.database().reference()
         
-        notificationsView = NotificationsView(frame: view.bounds)
+        addRecordView = AddRecordView(frame: view.bounds)
         firebaseWorker = FirebaseWorker()
     }
     
@@ -43,3 +43,25 @@ class AddRecordViewController: UIViewController {
     }
 
 }
+
+//func uploadImagePic(img1 :UIImage){
+//    var data = NSData()
+//    data = UIImageJPEGRepresentation(img1!, 0.8)! as NSData
+//    // set upload path
+//    let filePath = "\(userid)" // path where you wanted to store img in storage
+//    let metaData = FIRStorageMetadata()
+//    metaData.contentType = "image/jpg"
+//
+//    self.storageRef = FIRStorage.storage().reference()
+//    self.storageRef.child(filePath).put(data as Data, metadata: metaData){(metaData,error) in
+//        if let error = error {
+//            print(error.localizedDescription)
+//            return
+//        }else{
+//            //store downloadURL
+//            let downloadURL = metaData!.downloadURL()!.absoluteString
+//
+//        }
+//    }
+//
+//}
