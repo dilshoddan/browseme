@@ -23,6 +23,9 @@
                value = "Date()">
             </PersistentString>
             <PersistentString
+               value = "dateLabel.text">
+            </PersistentString>
+            <PersistentString
                value = "formatter.date(Date())">
             </PersistentString>
             <PersistentString

@@ -37,13 +37,15 @@ class NotificationsView: UIView {
         
         dateLabel = UILabel()
         dateLabel.text = Date().ToString(dateFormat: "dd-MMM-yyyy")
-        dateLabel.tintColor = .black
+        dateLabel.tintColor = .white
+        
         
         
         imageView = UIImageView()
         imageView.backgroundColor = #colorLiteral(red: 0.5183775907, green: 0.5156218294, blue: 0.5049525617, alpha: 1)
         textView = UITextView()
         textView.isUserInteractionEnabled = false
+        textView.font = UIFont(name: "Times New Roman", size: 18)
         
         
         
@@ -51,17 +53,20 @@ class NotificationsView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([dateLabel, imageView, textView])
-            dateLabel.height(10%).width(80%).centerHorizontally()
-            imageView.height(30%).width(100%).centerHorizontally()
-            textView.height(70%).width(100%).centerHorizontally()
-            self.layout(
-                150,
-                |-dateLabel-|,
-                |-imageView-|,
-                |-textView-|
-            )
-            dateLabel.Bottom == imageView.CenterY
+            self.sv([imageView, textView, dateLabel])
+            
+            imageView.height(35%).width(100%)
+            textView.height(65%).width(100%)
+            imageView.Top == self.Top
+            textView.Bottom == self.Bottom
+            
+            dateLabel.height(10%).width(80%).left(10)
+            dateLabel.Bottom == imageView.Bottom
+            
+            imageView.Bottom == textView.Top
+           
+//            imageView.top(10%)
+            
             
         }
         super.updateConstraints()
