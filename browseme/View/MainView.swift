@@ -33,8 +33,8 @@ class MainView: UIView {
         
         segmentedControl = UISegmentedControl()
         segmentedControl = UISegmentedControl(items: ["Notifications", "Live Chat"])
-        segmentedControl.tintColor = .black
-        segmentedControl.backgroundColor = ColorConstants.segmentedColorBackground
+        segmentedControl.tintColor = ColorConstants.segmentedColorBackground
+//        segmentedControl.backgroundColor = ColorConstants.segmentedColorBackground
         
         self.backgroundColor = .white
         webView = WKWebView(frame: self.frame)

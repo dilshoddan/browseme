@@ -14,6 +14,28 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "NotificationsViewController.viewDidLoad():NotificationsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "firebaseWorker">
+            </PersistentString>
+            <PersistentString
+               value = "FirebaseWorker">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in FirebaseWorker.ReadFirebaseNotificationData(with:):FirebaseWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(data.value as? String)!">
+            </PersistentString>
+            <PersistentString
+               value = "returnedData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainViewController.SegmentedControlValueChanged(segment:):MainViewController.swift">
          <PersistentStrings>
             <PersistentString

@@ -11,20 +11,25 @@ import FirebaseDatabase
 
 class FirebaseWorker{
     
-    private static var databaseHandle: DatabaseHandle!
+    private var databaseHandle: DatabaseHandle!
+    public var returnedData: [String]!
     
-    public static func CreateRecordIntoFirebase(_ databaseReference: DatabaseReference){
+    init() {
+        returnedData = []
+    }
+    
+    public func CreateRecordIntoFirebase(_ databaseReference: DatabaseReference){
         databaseReference.child("name").childByAutoId().setValue("Nigel")
         databaseReference.child("name").childByAutoId().setValue("Richard")
     }
     
-    public static func ReadFirebaseNotificationData(with databaseReference: DatabaseReference) -> [String]{
+    public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textField: UITextField){
         //var dbHandle =
-        var returnedData: [String] = []
-        databaseHandle = databaseReference.child("name").observe(.childAdded, with: {(data) in
-            let name: String = (data.value as? String)!
-            returnedData.append(name)
+        self.returnedData = []
+        databaseReference.child("name").observe(.childAdded, with: {(data) in
+            let name = (data.value as? String)!
+            self.returnedData.append(name)
+            textField.text = textField.text! + name
         })
-        return returnedData
     }
 }

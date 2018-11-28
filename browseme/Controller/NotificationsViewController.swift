@@ -16,6 +16,7 @@ class NotificationsViewController: UIViewController {
     private var notificationsView: NotificationsView!
     private var databaseReference: DatabaseReference!
     private var databaseHandle: DatabaseHandle!
+    private var firebaseWorker: FirebaseWorker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +24,7 @@ class NotificationsViewController: UIViewController {
         hero.isEnabled = true
         SetControlDefaults()
         render()
-        let returnedData: [String] = FirebaseWorker.ReadFirebaseNotificationData(with: databaseReference)
-        for row in returnedData {
-            notificationsView.textField.text = notificationsView.textField.text! + "; " + String(row)
-        }
+        firebaseWorker.ReadFirebaseNotificationData(with: databaseReference, writeTo: notificationsView.textField)
     }
     
     
@@ -35,6 +33,7 @@ class NotificationsViewController: UIViewController {
         databaseReference = Database.database().reference()
         
         notificationsView = NotificationsView(frame: view.bounds)
+        firebaseWorker = FirebaseWorker()
     }
     
     func render(){

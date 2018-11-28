@@ -16,13 +16,14 @@ class MainViewController: UIViewController, WKNavigationDelegate {
     
     private var databaseReference: DatabaseReference!
     private var mainView: MainView!
+    private var firebaseWorked: FirebaseWorker!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         SetControllerDefaults()
         render()
-        FirebaseWorker.CreateRecordIntoFirebase(databaseReference)
+        firebaseWorked.CreateRecordIntoFirebase(databaseReference)
     }
     
     
@@ -42,6 +43,7 @@ class MainViewController: UIViewController, WKNavigationDelegate {
         
         mainView.segmentedControl.addTarget(self, action: #selector(SegmentedControlValueChanged(segment:)), for: .valueChanged)
         
+        firebaseWorked = FirebaseWorker()
     }
     
     @objc func SegmentedControlValueChanged(segment: UISegmentedControl){
