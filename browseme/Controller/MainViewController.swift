@@ -19,10 +19,13 @@ class MainViewController: UIViewController, WKNavigationDelegate {
     private var mainView: MainView!
     private var firebaseWorked: FirebaseWorker!
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
+        
         hero.isEnabled = true
         SetControllerDefaults()
         render()
