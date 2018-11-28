@@ -38,7 +38,7 @@ class NotificationsView: UIView {
         dateLabel = UILabel()
         dateLabel.text = Date().ToString(dateFormat: "dd-MMM-yyyy")
         dateLabel.tintColor = .white
-        
+        dateLabel.font = UIFont(name: "Times New Roman", size: 32)
         
         
         imageView = UIImageView()
@@ -60,12 +60,10 @@ class NotificationsView: UIView {
             imageView.Top == self.Top
             textView.Bottom == self.Bottom
             
-            dateLabel.height(10%).width(80%).left(10)
+            dateLabel.height(10%).width(80%).left(5)
             dateLabel.Bottom == imageView.Bottom
             
             imageView.Bottom == textView.Top
-           
-//            imageView.top(10%)
             
             
         }
