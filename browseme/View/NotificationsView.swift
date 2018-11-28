@@ -14,8 +14,9 @@ class NotificationsView: UIView {
 
 //    private var segmentedControl: UISegmentedControl!
 //    public var webView: WKWebView!
+    public var label: UILabel!
     public var textField: UITextField!
-    public var shouldSetupConstraints = true
+    public var shouldSetupConstraints: Bool!
     
     
     override init(frame: CGRect) {
@@ -33,14 +34,28 @@ class NotificationsView: UIView {
     func SetControlDefaults(){
         self.backgroundColor = .white
         
+        label = UILabel()
+        label.text = "Data:"
         textField = UITextField()
+        textField.text = "Placeholder"
+        textField.backgroundColor = .white
+        textField.borderStyle = .roundedRect
+        textField.isEnabled = true
+        textField.isUserInteractionEnabled = true
+        
         
     }
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([textField])
-            textField.height(10%).width(80%).centerHorizontally().centerVertically()
+            self.sv([textField, label])
+            label.height(10%).width(80%).centerHorizontally()
+            textField.height(10%).width(80%).centerHorizontally()
+            self.layout(
+                |-label-|,
+                |-textField-|
+            )
+            label.Bottom == self.CenterY
             
         }
         super.updateConstraints()
