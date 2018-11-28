@@ -22,7 +22,7 @@ class NotificationsViewController: UIViewController {
         super.viewDidLoad()
         
         hero.isEnabled = true
-        
+        navigationController?.isNavigationBarHidden = false
         SetControlDefaults()
         render()
         firebaseWorker.ReadFirebaseNotificationData(with: databaseReference, writeTo: notificationsView.textView)

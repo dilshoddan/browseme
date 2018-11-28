@@ -22,7 +22,7 @@ class MainViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.isNavigationBarHidden = true
         hero.isEnabled = true
         SetControllerDefaults()
         render()
