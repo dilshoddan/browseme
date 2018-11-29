@@ -17,6 +17,7 @@ class NotificationsView: UIView {
     public var dateLabel: UILabel!
     public var imageView: UIImageView!
     public var textView: UITextView!
+    public var addRecordButtton: UIButton!
     
     
     
@@ -47,8 +48,9 @@ class NotificationsView: UIView {
         textView.isUserInteractionEnabled = false
         textView.font = UIFont(name: "Times New Roman", size: 18)
         
-        
-        
+        addRecordButtton = UIButton()
+        addRecordButtton.setTitle("Add Record", for: .normal)
+        addRecordButtton.backgroundColor = .blue
     }
     
     override func updateConstraints(){
@@ -65,6 +67,8 @@ class NotificationsView: UIView {
             
             imageView.Bottom == textView.Top
             
+            addRecordButtton.Bottom == textView.Bottom
+            addRecordButtton.Right == textView.Right
             
         }
         super.updateConstraints()

@@ -34,12 +34,20 @@ class NotificationsViewController: UIViewController {
         
         notificationsView = NotificationsView(frame: view.bounds)
         firebaseWorker = FirebaseWorker()
+        notificationsView.addRecordButtton.addTarget(self, action: #selector(AddRecordAction), for: .touchUpInside)
+        
     }
     
     func render(){
         view.sv(notificationsView)
         notificationsView.height(100%).width(100%).centerInContainer()
         notificationsView.updateConstraints()
+    }
+    
+    @objc func AddRecordAction(){
+        let addRecordViewController = AddRecordViewController()
+        navigationController?.pushViewController(addRecordViewController, animated: true)
+        
     }
 
 }

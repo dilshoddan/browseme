@@ -11,7 +11,7 @@ import Hero
 import Stevia
 import FirebaseDatabase
 
-class AddRecordViewController: UIViewController {
+class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     private var addRecordView: AddRecordView!
     private var databaseReference: DatabaseReference!
@@ -20,6 +20,7 @@ class AddRecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Add a record"
         hero.isEnabled = true
         navigationController?.isNavigationBarHidden = false
         SetControlDefaults()
@@ -34,6 +35,7 @@ class AddRecordViewController: UIViewController {
         
         addRecordView = AddRecordView(frame: view.bounds)
         firebaseWorker = FirebaseWorker()
+        navigationController?.isNavigationBarHidden = false
     }
     
     func render(){
@@ -41,7 +43,33 @@ class AddRecordViewController: UIViewController {
         addRecordView.height(100%).width(100%).centerInContainer()
         addRecordView.updateConstraints()
     }
+    
+    @objc func PickADate(recognizer:UITapGestureRecognizer){
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = DateFormatter.Style.medium
+//        formatter.timeStyle = DateFormatter.Style.none
+//        addRecordView.dateLabel.text = formatter.string(from: sender.date)
+        
+    }
 
+    @objc func PickAnImage(recognizer:UITapGestureRecognizer){
+//        let picker = UIImagePickerController()
+//        picker.delegate = self
+//        self.present(picker, animated: true, completion: nil)
+        
+    }
+    
+    func AddTapGestures(){
+        addRecordView.dateLabel.isEnabled = true
+        addRecordView.dateLabel.isUserInteractionEnabled = true
+        let pickADateTapGesture = UITapGestureRecognizer(target: self, action: #selector(PickADate(recognizer:)))
+        addRecordView.dateLabel.addGestureRecognizer(pickADateTapGesture)
+        
+        addRecordView.imageView.isUserInteractionEnabled = true
+        let pickAnImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(PickAnImage(recognizer:)))
+        addRecordView.imageView.addGestureRecognizer(pickAnImageTapGesture)
+        
+    }
 }
 
 //func uploadImagePic(img1 :UIImage){

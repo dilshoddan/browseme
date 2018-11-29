@@ -17,12 +17,6 @@ class AddRecordView: UIView {
     public var imageView: UIImageView!
     public var textView: UITextView!
     
-    public var datePicker: UIDatePicker!
-    public var imagePicker: UIImagePickerController!
-    public var textViewEditor: UITextView!
-    
-    
-    
     override init(frame: CGRect) {
         super.init(frame:frame)
         shouldSetupConstraints = true
@@ -47,9 +41,15 @@ class AddRecordView: UIView {
         imageView = UIImageView()
         imageView.backgroundColor = #colorLiteral(red: 0.5183775907, green: 0.5156218294, blue: 0.5049525617, alpha: 1)
         textView = UITextView()
-        textView.isUserInteractionEnabled = false
+        textView.isEditable = true
+        textView.isUserInteractionEnabled = true
         textView.font = UIFont(name: "Times New Roman", size: 18)
         
+        pickDate = UIButton()
+        
+        datePicker = UIDatePicker()
+        
+        pickImage = UIButton()
         
         
     }
