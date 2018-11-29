@@ -8,7 +8,6 @@
 
 import UIKit
 import Stevia
-import Hero
 
 class NotificationsView: UIView {
     

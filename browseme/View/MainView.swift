@@ -9,7 +9,6 @@
 import UIKit
 import Stevia
 import WebKit
-import Hero
 
 class MainView: UIView {
     private var shouldSetupConstraints: Bool!

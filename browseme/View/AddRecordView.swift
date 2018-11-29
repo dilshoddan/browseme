@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Hero
 import Stevia
 
 class AddRecordView: UIView {
@@ -36,12 +35,12 @@ class AddRecordView: UIView {
         
         dateLabel = UITextField()
         dateLabel.text = Date().ToString(dateFormat: "dd-MMM-yyyy")
-        dateLabel.tintColor = .blue
+        dateLabel.tintColor = .white
         dateLabel.font = UIFont(name: "Times New Roman", size: 32)
         
         imageNameLabel = UITextField()
-        imageNameLabel.tintColor = .blue
-        imageNameLabel.font = UIFont(name: "Times New Roman", size: 32)
+        imageNameLabel.tintColor = .white
+        imageNameLabel.font = UIFont(name: "Times New Roman", size: 10)
         imageNameLabel.text = "placeholder"
         
         
@@ -72,14 +71,14 @@ class AddRecordView: UIView {
             imageView.Bottom == textView.Top
             textView.Bottom == self.Bottom
             dateLabel.Bottom == imageView.Bottom
-            imageNameLabel.Top == imageView.Top
+            imageNameLabel.Bottom == imageView.Bottom
             
 //            saveToFirebase.Bottom == textView.Bottom
             
             imageView.height(35%).width(100%)
             textView.height(65%).width(100%)
-            dateLabel.height(10%).width(80%).left(2%)
-            imageNameLabel.height(10%).width(80%).right(2%)
+            dateLabel.height(5%).width(80%).left(2%)
+            imageNameLabel.height(3%).width(20%).right(2%)
             saveToFirebase.height(6%).width(45%).right(2%).bottom(2%)
             
             
