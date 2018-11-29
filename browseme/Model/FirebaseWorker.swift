@@ -17,14 +17,10 @@ class FirebaseWorker{
     private var imageNameLabel: UITextField!
     public var fileUploaded: Bool {
         didSet{
-            let image = imageFile
             if fileUploaded {
-                imageNameLabel.text = imageName
-                UIAlertController(title: "Successfully uploaded", message: "\(String(describing: image))", preferredStyle: .alert)
+                self.imageNameLabel.text = self.imageName
             }
-            else {
-                UIAlertController(title: "Upload failed", message: "Could not upload a file \(String(describing: image))", preferredStyle: .alert)
-            }
+            
         }
     }
     
@@ -65,8 +61,9 @@ class FirebaseWorker{
             error in
             if error == nil {
                 //success
-                self.fileUploaded = true
                 self.imageName = randomImageName
+                self.fileUploaded = true
+                
             } else {
                 //error
                 self.fileUploaded = false

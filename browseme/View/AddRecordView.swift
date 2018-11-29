@@ -36,16 +36,17 @@ class AddRecordView: UIView {
         
         dateLabel = UITextField()
         dateLabel.text = Date().ToString(dateFormat: "dd-MMM-yyyy")
-        dateLabel.tintColor = .white
+        dateLabel.tintColor = .blue
         dateLabel.font = UIFont(name: "Times New Roman", size: 32)
         
         imageNameLabel = UITextField()
-        imageNameLabel.tintColor = .white
+        imageNameLabel.tintColor = .blue
         imageNameLabel.font = UIFont(name: "Times New Roman", size: 32)
+        imageNameLabel.text = "placeholder"
         
         
         imageView = UIImageView()
-        imageView.backgroundColor = #colorLiteral(red: 0.5183775907, green: 0.5156218294, blue: 0.5049525617, alpha: 1)
+        imageView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         imageView.clipsToBounds = true
         
         textView = UITextView()

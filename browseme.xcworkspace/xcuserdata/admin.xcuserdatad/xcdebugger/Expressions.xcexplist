@@ -26,6 +26,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AddRecordViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):AddRecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "imageFileName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "static FirebaseWorker.ReadFirebaseNotificationData(with:):FirebaseWorker.swift">
          <PersistentStrings>
             <PersistentString
@@ -48,10 +56,19 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AddRecordViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):AddRecordViewController.swift">
+         contextName = "FirebaseWorker.fileUploaded.didset:FirebaseWorker.swift">
          <PersistentStrings>
             <PersistentString
-               value = "imageFileName">
+               value = "self.imageNameLabel.text">
+            </PersistentString>
+            <PersistentString
+               value = "imageName">
+            </PersistentString>
+            <PersistentString
+               value = "fileUploaded">
+            </PersistentString>
+            <PersistentString
+               value = "self.imageName">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
