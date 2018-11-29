@@ -17,26 +17,31 @@ class NotificationsViewController: UIViewController {
     private var databaseReference: DatabaseReference!
     private var firebaseWorker: FirebaseWorker!
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hero.isEnabled = true
-        navigationController?.isNavigationBarHidden = false
         SetControlDefaults()
         render()
-        firebaseWorker.ReadFirebaseNotificationData(with: databaseReference, writeTo: notificationsView.textView)
+        
+//        SetFirebaseDefaults()
+//        firebaseWorker.ReadFirebaseNotificationData(with: databaseReference, writeTo: notificationsView.textView)
+        
     }
     
-    
+    func SetFirebaseDefaults(){
+        databaseReference = Database.database().reference()
+        firebaseWorker = FirebaseWorker()
+    }
     
     func SetControlDefaults(){
-        databaseReference = Database.database().reference()
-        
         notificationsView = NotificationsView(frame: view.bounds)
-        firebaseWorker = FirebaseWorker()
-        
         notificationsView.addRecordButtton.addTarget(self, action: #selector(AddRecordAction), for: .touchUpInside)
-        
+        notificationsView.backButton.addTarget(self, action: #selector(BackButtonTapped), for: .touchUpInside)
     }
     
     func render(){
@@ -48,7 +53,19 @@ class NotificationsViewController: UIViewController {
     @objc func AddRecordAction(){
         let addRecordViewController = AddRecordViewController()
         navigationController?.pushViewController(addRecordViewController, animated: true)
-        
     }
+    
+    @objc func BackButtonTapped(){
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
+//    func AddTapGestures(){
+//        notificationsView.backLabel.isEnabled = true
+//        notificationsView.backLabel.isUserInteractionEnabled = true
+//        let backLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(BackLabelAction(recognizer:)))
+//        notificationsView.backLabel.addGestureRecognizer(backLabelTapGesture)
+//    }
 
 }

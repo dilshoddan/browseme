@@ -20,6 +20,10 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
     private var firebaseWorker: FirebaseWorker!
     private var imageFileName = ""
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,20 +31,20 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         SetControlDefaults()
         render()
         AddTapGestures()
-        
+//        SetFirebaseDefaults()
+    }
+    
+    func SetFirebaseDefaults(){
+        databaseReference = Database.database().reference()
+        firebaseWorker = FirebaseWorker()
     }
     
     
-    
     func SetControlDefaults(){
-        
         self.title = "Add a record"
         hero.isEnabled = true
-        databaseReference = Database.database().reference()
-        
         addRecordView = AddRecordView(frame: view.bounds)
-        firebaseWorker = FirebaseWorker()
-        navigationController?.isNavigationBarHidden = true
+        addRecordView.backButton.addTarget(self, action: #selector(BackButtonTapped), for: .touchUpInside)
     }
     
     func render(){
@@ -49,7 +53,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         addRecordView.updateConstraints()
     }
     
-    @objc func datePickerValueChanged(sender: UIDatePicker) {
+    @objc func DatePickerValueChanged(sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.medium
         formatter.timeStyle = DateFormatter.Style.none
@@ -59,7 +63,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
     @objc func PickADate(recognizer:UITapGestureRecognizer){
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = UIDatePicker.Mode.date
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(DatePickerValueChanged(sender:)), for: .valueChanged)
         addRecordView.dateLabel.inputView = datePicker
     }
     
@@ -67,7 +71,6 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         let picker = UIImagePickerController()
         picker.delegate = self
         self.present(picker, animated: true, completion: nil)
-        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -81,11 +84,13 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         }
         addRecordView.imageView.image = selectedImage
         imageFileName = ""
-        firebaseWorker.uploadImage(selectedImage, addRecordView.imageNameLabel)
+//        firebaseWorker.uploadImage(selectedImage, addRecordView.imageNameLabel)
         picker.dismiss(animated: true, completion: nil)
     }
     
-    
+    @objc func BackButtonTapped(){
+        navigationController?.popViewController(animated: true)
+    }
     
     func AddTapGestures(){
         addRecordView.dateLabel.isEnabled = true
@@ -96,7 +101,6 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         addRecordView.imageView.isUserInteractionEnabled = true
         let pickAnImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(PickAnImage(recognizer:)))
         addRecordView.imageView.addGestureRecognizer(pickAnImageTapGesture)
-        
     }
 }
 

@@ -17,13 +17,13 @@ class AddRecordView: UIView {
     public var imageView: UIImageView!
     public var textView: UITextView!
     public var saveToFirebase: UIButton!
+    public var backButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame:frame)
         shouldSetupConstraints = true
         SetControlDefaults()
         updateConstraints()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,39 +54,45 @@ class AddRecordView: UIView {
         textView.font = UIFont(name: "Times New Roman", size: 18)
         
         saveToFirebase = UIButton()
-        saveToFirebase.backgroundColor = .blue
+        saveToFirebase.backgroundColor = ColorConstants.notificationsViewBackButtonColor
         saveToFirebase.setTitle("Save to Firebase", for: .normal)
-        saveToFirebase.tintColor = .white
+        saveToFirebase.tintColor = .black
         saveToFirebase.layer.cornerRadius = 5
         saveToFirebase.clipsToBounds = true
         saveToFirebase.isEnabled = true
         saveToFirebase.isUserInteractionEnabled = true
+        
+        backButton = UIButton()
+        backButton.backgroundColor = ColorConstants.notificationsViewBackButtonColor
+        backButton.setTitle("<Back", for: .normal)
+        backButton.tintColor = .black
+        backButton.layer.cornerRadius = 5
+        backButton.clipsToBounds = true
+        backButton.isEnabled = true
+        backButton.isUserInteractionEnabled = true
     }
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([imageView, textView, dateLabel, saveToFirebase, imageNameLabel])
+            self.sv([imageView, textView, dateLabel, saveToFirebase, imageNameLabel, backButton])
             
             imageView.Top == self.Top
             imageView.Bottom == textView.Top
             textView.Bottom == self.Bottom
             dateLabel.Bottom == imageView.Bottom
-            imageNameLabel.Bottom == imageView.Bottom
+            backButton.Top == self.Top
+            backButton.Left == self.Left
+            imageNameLabel.Bottom == backButton.Top
+            imageNameLabel.Right == self.Right
             
 //            saveToFirebase.Bottom == textView.Bottom
             
             imageView.height(35%).width(100%)
             textView.height(65%).width(100%)
             dateLabel.height(5%).width(80%).left(2%)
-            imageNameLabel.height(3%).width(20%).right(1%)
             saveToFirebase.height(6%).width(45%).right(2%).bottom(2%)
-            
-            
-            
-            
-            
-            
-            
+            imageNameLabel.height(3%).width(30%).top(4%)
+            backButton.height(4%).width(18%).top(6%)
             
         }
         super.updateConstraints()

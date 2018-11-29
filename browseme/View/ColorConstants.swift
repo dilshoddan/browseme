@@ -9,15 +9,9 @@
 import UIKit
 
 struct ColorConstants {
-    static let segmentedColorBackground = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    static let segmentedColorBackground = UIColor.blue
+    static let notificationsViewBackButtonColor = UIColor.lightGray
 }
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 

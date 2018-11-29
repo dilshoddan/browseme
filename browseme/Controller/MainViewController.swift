@@ -29,10 +29,15 @@ class MainViewController: UIViewController, WKNavigationDelegate {
         hero.isEnabled = true
         SetControllerDefaults()
         render()
+//        SetFirebaseDefaults()
+//        RedirectTo("https://www.apple.com")
 //        firebaseWorked.CreateRecordIntoFirebase(databaseReference)
     }
     
-    
+    func SetFirebaseDefaults(){
+        databaseReference = Database.database().reference()
+        firebaseWorked = FirebaseWorker()
+    }
     
     func render(){
         view.sv(mainView)
@@ -40,17 +45,11 @@ class MainViewController: UIViewController, WKNavigationDelegate {
         mainView.updateConstraints()
     }
     
-    
     func SetControllerDefaults(){
-        databaseReference = Database.database().reference()
-        
         mainView = MainView(frame: view.bounds)
         mainView.webView.navigationDelegate = self
-        RedirectTo("https://www.apple.com")
-        
         mainView.segmentedControl.addTarget(self, action: #selector(SegmentedControlValueChanged(selectedControl:)), for: .valueChanged)
         
-        firebaseWorked = FirebaseWorker()
     }
     
     @objc func SegmentedControlValueChanged(selectedControl: UISegmentedControl){
@@ -71,12 +70,12 @@ class MainViewController: UIViewController, WKNavigationDelegate {
     
 }
 
-extension MainViewController: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController) {
-        // TODO
-    }
-}
+//extension MainViewController: UISearchResultsUpdating {
+//    // MARK: - UISearchResultsUpdating Delegate
+//    func updateSearchResults(for searchController: UISearchController) {
+//        // TODO
+//    }
+//}
 
 
 
