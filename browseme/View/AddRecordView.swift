@@ -37,7 +37,7 @@ class AddRecordView: UIView {
         dateTextField.text = Date().ToString(dateFormat: "dd-MMM-yyyy")
         dateTextField.tintColor = .white
         dateTextField.font = UIFont(name: "Times New Roman", size: 32)
-        dateTextField.textColor = UIColor.white
+        dateTextField.textColor = .white
         dateTextField.isEnabled = false
         dateTextField.isUserInteractionEnabled = false
         

@@ -38,8 +38,9 @@ class NotificationsView: UIView {
         
         dateLabel = UILabel()
         dateLabel.text = Date().ToString(dateFormat: "dd-MMM-yyyy")
-        dateLabel.tintColor = .white
+        dateLabel.tintColor = .black
         dateLabel.font = UIFont(name: "Times New Roman", size: 32)
+        dateLabel.textColor = .white
         
         imageView = UIImageView()
         imageView.backgroundColor = #colorLiteral(red: 0.5183775907, green: 0.5156218294, blue: 0.5049525617, alpha: 1)
@@ -81,7 +82,7 @@ class NotificationsView: UIView {
             
             imageView.height(35%).width(100%)
             textView.height(65%).width(100%)
-            dateLabel.height(10%).width(80%).left(2%)
+            dateLabel.height(5%).width(80%).left(2%)
             addRecordButtton.height(6%).width(50%).right(2%).bottom(2%)
             backButton.height(4%).width(18%).top(6%)
             

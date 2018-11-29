@@ -13,7 +13,7 @@ import FirebaseDatabase
 import FirebaseStorage
 
 
-class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     private var addRecordView: AddRecordView!
     private var databaseReference: DatabaseReference!
@@ -34,6 +34,11 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
 //        SetFirebaseDefaults()
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        self.resignFirstResponder()
+        return false
+    }
+    
     func SetFirebaseDefaults(){
         databaseReference = Database.database().reference()
         firebaseWorker = FirebaseWorker()
@@ -45,6 +50,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         hero.isEnabled = true
         addRecordView = AddRecordView(frame: view.bounds)
         addRecordView.backButton.addTarget(self, action: #selector(BackButtonTapped), for: .touchUpInside)
+        addRecordView.dateTextField.delegate = self
     }
     
     func render(){
@@ -54,10 +60,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @objc func DatePickerValueChanged(sender: UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateStyle = DateFormatter.Style.medium
-        formatter.timeStyle = DateFormatter.Style.none
-        addRecordView.dateTextField.text = formatter.string(from: sender.date)
+        addRecordView.dateTextField.text = sender.date.ToString(dateFormat: "dd-MMM-yyyy")
     }
     
     @objc func PickADate(recognizer:UITapGestureRecognizer){
