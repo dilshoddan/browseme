@@ -50,7 +50,7 @@ class NotificationsView: UIView {
         
         addRecordButtton = UIButton()
         addRecordButtton.backgroundColor = .blue
-        addRecordButtton.setTitle("Add New Record", for: .normal)
+        addRecordButtton.setTitle("Add A New Record", for: .normal)
         addRecordButtton.tintColor = .white
         addRecordButtton.layer.cornerRadius = 5
         addRecordButtton.clipsToBounds = true
@@ -62,19 +62,21 @@ class NotificationsView: UIView {
         if(shouldSetupConstraints){
             self.sv([imageView, textView, dateLabel, addRecordButtton])
             
-            imageView.height(35%).width(100%)
-            textView.height(65%).width(100%)
-            dateLabel.height(10%).width(80%).left(2%)
-            addRecordButtton.height(6%).width(45%).right(2%).bottom(2%)
-            
             dateLabel.Bottom == imageView.Bottom
             imageView.Top == self.Top
             imageView.Bottom == textView.Top
             textView.Bottom == self.Bottom
             
             
-            addRecordButtton.Bottom == textView.Bottom
-            addRecordButtton.Right == textView.Right
+//            addRecordButtton.Bottom == textView.Bottom
+//            addRecordButtton.Right == textView.Right
+            
+            imageView.height(35%).width(100%)
+            textView.height(65%).width(100%)
+            dateLabel.height(10%).width(80%).left(2%)
+            addRecordButtton.height(6%).width(50%).right(2%).bottom(2%)
+            
+            
             
         }
         super.updateConstraints()

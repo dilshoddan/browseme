@@ -60,17 +60,19 @@ class AddRecordView: UIView {
         if(shouldSetupConstraints){
             self.sv([imageView, textView, dateLabel, saveToFirebase])
             
-            imageView.height(35%).width(100%)
-            textView.height(65%).width(100%)
-            dateLabel.height(10%).width(80%).left(2%)
-            saveToFirebase.height(6%).width(45%).right(2%).bottom(2%)
-            
             imageView.Top == self.Top
             imageView.Bottom == textView.Top
             textView.Bottom == self.Bottom
             dateLabel.Bottom == imageView.Bottom
             
-            saveToFirebase.Bottom == textView.Bottom
+//            saveToFirebase.Bottom == textView.Bottom
+            
+            imageView.height(35%).width(100%)
+            textView.height(65%).width(100%)
+            dateLabel.height(10%).width(80%).left(2%)
+            saveToFirebase.height(6%).width(45%).right(2%).bottom(2%)
+            
+            
             
             
             
