@@ -14,6 +14,7 @@ class AddRecordView: UIView {
 
     public var shouldSetupConstraints: Bool!
     public var dateLabel: UITextField!
+    public var imageNameLabel: UITextField!
     public var imageView: UIImageView!
     public var textView: UITextView!
     public var saveToFirebase: UIButton!
@@ -38,6 +39,10 @@ class AddRecordView: UIView {
         dateLabel.tintColor = .white
         dateLabel.font = UIFont(name: "Times New Roman", size: 32)
         
+        imageNameLabel = UITextField()
+        imageNameLabel.tintColor = .white
+        imageNameLabel.font = UIFont(name: "Times New Roman", size: 32)
+        
         
         imageView = UIImageView()
         imageView.backgroundColor = #colorLiteral(red: 0.5183775907, green: 0.5156218294, blue: 0.5049525617, alpha: 1)
@@ -60,18 +65,20 @@ class AddRecordView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([imageView, textView, dateLabel, saveToFirebase])
+            self.sv([imageView, textView, dateLabel, saveToFirebase, imageNameLabel])
             
             imageView.Top == self.Top
             imageView.Bottom == textView.Top
             textView.Bottom == self.Bottom
             dateLabel.Bottom == imageView.Bottom
+            imageNameLabel.Top == imageView.Top
             
 //            saveToFirebase.Bottom == textView.Bottom
             
             imageView.height(35%).width(100%)
             textView.height(65%).width(100%)
             dateLabel.height(10%).width(80%).left(2%)
+            imageNameLabel.height(10%).width(80%).right(2%)
             saveToFirebase.height(6%).width(45%).right(2%).bottom(2%)
             
             
