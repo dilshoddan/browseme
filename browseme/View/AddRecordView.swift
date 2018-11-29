@@ -51,7 +51,7 @@ class AddRecordView: UIView {
         
         
         imageView = UIImageView()
-        imageView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        imageView.backgroundColor = UIColor.gray
         imageView.clipsToBounds = true
         
         textView = UITextView()
