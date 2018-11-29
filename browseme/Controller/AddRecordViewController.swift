@@ -25,6 +25,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         navigationController?.isNavigationBarHidden = false
         SetControlDefaults()
         render()
+        AddTapGestures()
         
     }
     
@@ -50,6 +51,11 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
 //        formatter.timeStyle = DateFormatter.Style.none
 //        addRecordView.dateLabel.text = formatter.string(from: sender.date)
         
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = UIDatePicker.Mode.date
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
+//        dobField.inputView = datePicker
+        
     }
 
     @objc func PickAnImage(recognizer:UITapGestureRecognizer){
@@ -57,6 +63,13 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
 //        picker.delegate = self
 //        self.present(picker, animated: true, completion: nil)
         
+    }
+    
+    @objc func datePickerValueChanged(sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.medium
+        formatter.timeStyle = DateFormatter.Style.none
+        addRecordView.dateLabel.text = formatter.string(from: sender.date)
     }
     
     func AddTapGestures(){

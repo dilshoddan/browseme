@@ -45,12 +45,6 @@ class AddRecordView: UIView {
         textView.isUserInteractionEnabled = true
         textView.font = UIFont(name: "Times New Roman", size: 18)
         
-        pickDate = UIButton()
-        
-        datePicker = UIDatePicker()
-        
-        pickImage = UIButton()
-        
         
     }
     
