@@ -72,46 +72,46 @@ class AddRecordViewController: UIViewController {
 //import FirebaseStorage
 //
 //class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-//    
+//
 //    @IBOutlet weak var profileImage: UIImageView!
 //    @IBOutlet weak var usernameField: UITextField!
 //    @IBOutlet weak var emailField: UITextField!
 //    @IBOutlet weak var passwordField: UITextField!
 //    @IBOutlet weak var dobField: UITextField!
 //    @IBOutlet weak var selectImageButton: UIButton!
-//    
+//
 //    var imageFileName = ""
-//    
+//
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //        // Do any additional setup after loading the view.
-//        
+//
 //        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-//        
+//
 //        let datePicker = UIDatePicker()
 //        datePicker.datePickerMode = UIDatePickerMode.date
 //        datePicker.addTarget(self, action: #selector(RegisterViewController.datePickerValueChanged(sender:)), for: UIControlEvents.valueChanged)
 //        dobField.inputView = datePicker
-//        
+//
 //        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
 //        self.profileImage.clipsToBounds = true;
-//        
+//
 //    }
-//    
+//
 //    @objc func datePickerValueChanged(sender: UIDatePicker) {
 //        let formatter = DateFormatter()
 //        formatter.dateStyle = DateFormatter.Style.medium
 //        formatter.timeStyle = DateFormatter.Style.none
 //        dobField.text = formatter.string(from: sender.date)
 //    }
-//    
-//    
+//
+//
 //    @IBAction func selectImageTapped(_ sender: UIButton) {
 //        let picker = UIImagePickerController()
 //        picker.delegate = self
 //        self.present(picker, animated: true, completion: nil)
 //    }
-//    
+//
 //    func uploadImage(image: UIImage) {
 //        let randomName = randomStringWithLength(length: 10)
 //        let imageData = UIImageJPEGRepresentation(image, 1.0)
@@ -128,11 +128,11 @@ class AddRecordViewController: UIViewController {
 //            }
 //        }
 //    }
-//    
+//
 //    func randomStringWithLength(length: Int) -> NSString {
 //        let characters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 //        let randomString: NSMutableString = NSMutableString(capacity: length)
-//        
+//
 //        for i in 0..<length {
 //            var len = UInt32(characters.length)
 //            var rand = arc4random_uniform(len)
@@ -140,12 +140,12 @@ class AddRecordViewController: UIViewController {
 //        }
 //        return randomString
 //    }
-//    
+//
 //    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 //        // will run if the user hits cancel
 //        picker.dismiss(animated: true, completion: nil)
 //    }
-//    
+//
 //    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 //        // will run when the user finishes picking an image from the library
 //        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -156,19 +156,19 @@ class AddRecordViewController: UIViewController {
 //            picker.dismiss(animated: true, completion: nil)
 //        }
 //    }
-//    
+//
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()
 //        // Dispose of any resources that can be recreated.
 //    }
-//    
+//
 //    @IBAction func registerTapped(_ sender: UIButton) {
-//        
+//
 //        let username = usernameField.text
 //        let email = emailField.text
 //        let password = passwordField.text
 //        let dob = dobField.text
-//        
+//
 //        Auth.auth().createUser(withEmail: email!, password: password!) { (user, error) in
 //            if error != nil {
 //                //error creating account
@@ -177,10 +177,10 @@ class AddRecordViewController: UIViewController {
 //                self.present(alert, animated: true, completion: nil)
 //            }else {
 //                //account created
-//                
+//
 //                if (self.imageFileName != "") {
 //                    if let uid = Auth.auth().currentUser?.uid {
-//                        
+//
 //                        let regObject: Dictionary<String, Any> = [
 //                            "uid" : uid,
 //                            "username" : username,
@@ -188,7 +188,7 @@ class AddRecordViewController: UIViewController {
 //                            "profimage" : self.imageFileName
 //                        ]
 //                        Database.database().reference().child("posts").child(uid).setValue(regObject)
-//                        
+//
 //                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoggedInVC")
 //                        self.present(vc!, animated: true, completion: nil)
 //                    }else {
@@ -198,11 +198,11 @@ class AddRecordViewController: UIViewController {
 //                        self.present(alert, animated: true, completion: nil)
 //                    }
 //                }
-//                
+//
 //                //let alert = UIAlertController(title: "Success!", message: "Account has been created...", preferredStyle: .alert)
 //                //alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 //                //self.present(alert, animated: true, completion: nil)
-//                
+//
 //            }
 //        }
 //}
