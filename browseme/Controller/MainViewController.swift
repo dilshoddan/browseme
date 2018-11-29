@@ -43,9 +43,10 @@ class MainViewController: UIViewController, WKNavigationDelegate {
     
     func SetControllerDefaults(){
         databaseReference = Database.database().reference()
+        
         mainView = MainView(frame: view.bounds)
         mainView.webView.navigationDelegate = self
-        RedirectTo("https://www.greenmatch.ru")
+        RedirectTo("https://www.apple.com")
         
         mainView.segmentedControl.addTarget(self, action: #selector(SegmentedControlValueChanged(selectedControl:)), for: .valueChanged)
         

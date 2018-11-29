@@ -38,7 +38,7 @@ class MainView: UIView {
         segmentedControl.isMomentary = true
 //        segmentedControl.backgroundColor = ColorConstants.segmentedColorBackground
         
-        self.backgroundColor = .white
+        self.backgroundColor = .blue
         webView = WKWebView(frame: self.frame)
         webView.allowsBackForwardNavigationGestures = true
 

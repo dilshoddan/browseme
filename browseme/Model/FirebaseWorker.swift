@@ -12,11 +12,31 @@ import FirebaseStorage
 
 class FirebaseWorker{
     
+    private var imageName: String!
+    private var imageFile: UIImage!
+    private var imageNameLabel: UITextField!
+    public var fileUploaded: Bool {
+        didSet{
+            let image = imageFile
+            if fileUploaded {
+                imageNameLabel.text = imageName
+                UIAlertController(title: "Successfully uploaded", message: "\(image)", preferredStyle: .alert)
+            }
+            else {
+                UIAlertController(title: "Upload failed", message: "Could not upload a file \(image)", preferredStyle: .alert)
+            }
+        }
+    }
+    
     private var databaseHandle: DatabaseHandle!
     public var returnedData: [String]!
     
     init() {
         returnedData = []
+        imageFile = UIImage()
+        fileUploaded = false
+        imageNameLabel = UITextField()
+        imageName = ""
     }
     
     public func CreateRecordIntoFirebase(_ databaseReference: DatabaseReference){
@@ -24,19 +44,20 @@ class FirebaseWorker{
         databaseReference.child("name").childByAutoId().setValue("Richard")
     }
     
-    public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textField: UITextView){
+    public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textView: UITextView){
         //var dbHandle =
         self.returnedData = []
         databaseReference.child("name").observe(.childAdded, with: {(data) in
             let name = (data.value as? String)!
             self.returnedData.append(name)
-            textField.text = name
+            textView.text = name
         })
     }
     
-    public func uploadImage(_ image: UIImage) -> String {
-        var uploaded = false
-        let randomImageName = "Image_" + String(Double.random(in: Double.leastNonzeroMagnitude ... Double.greatestFiniteMagnitude)) + ".jpg"
+    public func uploadImage(_ image: UIImage, _ imageNameLabel: UITextField) {
+        self.imageNameLabel = imageNameLabel
+        imageFile = image
+        let randomImageName = "Image_" + String(Int.random(in: Int.min ... Int.max)) + ".jpg"
         let imageData = image.jpegData(compressionQuality: 1.0)!
         //UIImageJPEGRepresentation(image, 1.0)
         let uploadRef = Storage.storage().reference().child("images/notificationImages/\(randomImageName).jpg")
@@ -44,18 +65,12 @@ class FirebaseWorker{
             error in
             if error == nil {
                 //success
-                UIAlertController(title: "Successfully uploaded", message: "\(image)", preferredStyle: .alert)
-                uploaded = true
+                self.fileUploaded = true
+                self.imageName = randomImageName
             } else {
                 //error
-                UIAlertController(title: "Upload failed", message: "Could not upload a file \(image)", preferredStyle: .alert)
+                self.fileUploaded = false
             }
-        }
-        if uploaded {
-            return randomImageName
-        }
-        else {
-            return ""
         }
     }
 }

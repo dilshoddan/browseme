@@ -3,6 +3,29 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "NotificationsView.SetControlDefaults():NotificationsView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "today!">
+            </PersistentString>
+            <PersistentString
+               value = "Date()">
+            </PersistentString>
+            <PersistentString
+               value = "String(describing: Date())">
+            </PersistentString>
+            <PersistentString
+               value = "formatter.date(Date())">
+            </PersistentString>
+            <PersistentString
+               value = "Date().ToString(dateFormat: &quot;dd-MMM-yyyy&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "dateLabel.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "static FirebaseWorker.ReadFirebaseNotificationData(with:):FirebaseWorker.swift">
          <PersistentStrings>
             <PersistentString
@@ -14,29 +37,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NotificationsView.SetControlDefaults():NotificationsView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "Date().ToString(dateFormat: &quot;dd-MMM-yyyy&quot;)">
-            </PersistentString>
-            <PersistentString
-               value = "Date()">
-            </PersistentString>
-            <PersistentString
-               value = "dateLabel.text">
-            </PersistentString>
-            <PersistentString
-               value = "formatter.date(Date())">
-            </PersistentString>
-            <PersistentString
-               value = "today!">
-            </PersistentString>
-            <PersistentString
-               value = "String(describing: Date())">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "NotificationsViewController.viewDidLoad():NotificationsViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -44,6 +44,14 @@
             </PersistentString>
             <PersistentString
                value = "FirebaseWorker">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddRecordViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):AddRecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "imageFileName">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
