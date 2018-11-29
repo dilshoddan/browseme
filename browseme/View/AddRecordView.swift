@@ -41,6 +41,8 @@ class AddRecordView: UIView {
         
         imageView = UIImageView()
         imageView.backgroundColor = #colorLiteral(red: 0.5183775907, green: 0.5156218294, blue: 0.5049525617, alpha: 1)
+        imageView.clipsToBounds = true
+        
         textView = UITextView()
         textView.isEditable = true
         textView.isUserInteractionEnabled = true

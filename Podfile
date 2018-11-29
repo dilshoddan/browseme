@@ -8,6 +8,7 @@ target 'browseme' do
     pod "Hero", "1.4.0"
     pod "Firebase/Core"
     pod "Firebase/Database"
+    pod "Firebase/Storage"
 
   # Pods for browseme
 

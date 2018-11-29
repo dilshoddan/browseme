@@ -10,12 +10,15 @@ import UIKit
 import Hero
 import Stevia
 import FirebaseDatabase
+import FirebaseStorage
+
 
 class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     private var addRecordView: AddRecordView!
     private var databaseReference: DatabaseReference!
     private var firebaseWorker: FirebaseWorker!
+    private var imageFileName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,32 +50,43 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         addRecordView.updateConstraints()
     }
     
-    @objc func PickADate(recognizer:UITapGestureRecognizer){
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = DateFormatter.Style.medium
-//        formatter.timeStyle = DateFormatter.Style.none
-//        addRecordView.dateLabel.text = formatter.string(from: sender.date)
-        
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = UIDatePicker.Mode.date
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
-        addRecordView.dateLabel.inputView = datePicker
-        
-    }
-
-    @objc func PickAnImage(recognizer:UITapGestureRecognizer){
-//        let picker = UIImagePickerController()
-//        picker.delegate = self
-//        self.present(picker, animated: true, completion: nil)
-        
-    }
-    
     @objc func datePickerValueChanged(sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.medium
         formatter.timeStyle = DateFormatter.Style.none
         addRecordView.dateLabel.text = formatter.string(from: sender.date)
     }
+    
+    @objc func PickADate(recognizer:UITapGestureRecognizer){
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = UIDatePicker.Mode.date
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
+        addRecordView.dateLabel.inputView = datePicker
+    }
+    
+    @objc func PickAnImage(recognizer:UITapGestureRecognizer){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // will run if the user hits cancel
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.originalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        addRecordView.imageView.image = selectedImage
+        imageFileName = ""
+        imageFileName = firebaseWorker.uploadImage(selectedImage)
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     func AddTapGestures(){
         addRecordView.dateLabel.isEnabled = true

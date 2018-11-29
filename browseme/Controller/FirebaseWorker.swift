@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseStorage
 
 class FirebaseWorker{
     
@@ -31,6 +32,31 @@ class FirebaseWorker{
             self.returnedData.append(name)
             textField.text = name
         })
+    }
+    
+    public func uploadImage(_ image: UIImage) -> String {
+        var uploaded = false
+        let randomImageName = "Image_" + String(Double.random(in: Double.leastNonzeroMagnitude ... Double.greatestFiniteMagnitude)) + ".jpg"
+        let imageData = image.jpegData(compressionQuality: 1.0)!
+        //UIImageJPEGRepresentation(image, 1.0)
+        let uploadRef = Storage.storage().reference().child("images/profimg/\(randomImageName).jpg")
+        _ = uploadRef.putData(imageData, metadata: nil) { metadata,
+            error in
+            if error == nil {
+                //success
+                print("success")
+                uploaded = true
+            } else {
+                //error
+                print("error uploading image")
+            }
+        }
+        if uploaded {
+            return randomImageName
+        }
+        else {
+            return ""
+        }
     }
 }
 
