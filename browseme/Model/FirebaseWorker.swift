@@ -20,10 +20,10 @@ class FirebaseWorker{
             let image = imageFile
             if fileUploaded {
                 imageNameLabel.text = imageName
-                UIAlertController(title: "Successfully uploaded", message: "\(image)", preferredStyle: .alert)
+                UIAlertController(title: "Successfully uploaded", message: "\(String(describing: image))", preferredStyle: .alert)
             }
             else {
-                UIAlertController(title: "Upload failed", message: "Could not upload a file \(image)", preferredStyle: .alert)
+                UIAlertController(title: "Upload failed", message: "Could not upload a file \(String(describing: image))", preferredStyle: .alert)
             }
         }
     }
