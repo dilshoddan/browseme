@@ -13,9 +13,10 @@ import Stevia
 class AddRecordView: UIView {
 
     public var shouldSetupConstraints: Bool!
-    public var dateLabel: UILabel!
+    public var dateLabel: UITextField!
     public var imageView: UIImageView!
     public var textView: UITextView!
+    public var saveToFirebase: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -32,7 +33,7 @@ class AddRecordView: UIView {
     func SetControlDefaults(){
         self.backgroundColor = .white
         
-        dateLabel = UILabel()
+        dateLabel = UITextField()
         dateLabel.text = Date().ToString(dateFormat: "dd-MMM-yyyy")
         dateLabel.tintColor = .white
         dateLabel.font = UIFont(name: "Times New Roman", size: 32)
@@ -45,22 +46,35 @@ class AddRecordView: UIView {
         textView.isUserInteractionEnabled = true
         textView.font = UIFont(name: "Times New Roman", size: 18)
         
-        
+        saveToFirebase = UIButton()
+        saveToFirebase.backgroundColor = .blue
+        saveToFirebase.setTitle("Save to Firebase", for: .normal)
+        saveToFirebase.tintColor = .white
+        saveToFirebase.layer.cornerRadius = 5
+        saveToFirebase.clipsToBounds = true
+        saveToFirebase.isEnabled = true
+        saveToFirebase.isUserInteractionEnabled = true
     }
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([imageView, textView, dateLabel])
+            self.sv([imageView, textView, dateLabel, saveToFirebase])
             
             imageView.height(35%).width(100%)
             textView.height(65%).width(100%)
-            imageView.Top == self.Top
-            textView.Bottom == self.Bottom
+            dateLabel.height(10%).width(80%).left(2%)
+            saveToFirebase.height(6%).width(45%).right(2%).bottom(2%)
             
-            dateLabel.height(10%).width(80%).left(5)
+            imageView.Top == self.Top
+            imageView.Bottom == textView.Top
+            textView.Bottom == self.Bottom
             dateLabel.Bottom == imageView.Bottom
             
-            imageView.Bottom == textView.Top
+            saveToFirebase.Bottom == textView.Bottom
+            
+            
+            
+            
             
             
         }

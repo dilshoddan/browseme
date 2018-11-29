@@ -34,6 +34,7 @@ class NotificationsViewController: UIViewController {
         
         notificationsView = NotificationsView(frame: view.bounds)
         firebaseWorker = FirebaseWorker()
+        
         notificationsView.addRecordButtton.addTarget(self, action: #selector(AddRecordAction), for: .touchUpInside)
         
     }

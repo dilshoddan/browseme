@@ -49,23 +49,29 @@ class NotificationsView: UIView {
         textView.font = UIFont(name: "Times New Roman", size: 18)
         
         addRecordButtton = UIButton()
-        addRecordButtton.setTitle("Add Record", for: .normal)
         addRecordButtton.backgroundColor = .blue
+        addRecordButtton.setTitle("Add New Record", for: .normal)
+        addRecordButtton.tintColor = .white
+        addRecordButtton.layer.cornerRadius = 5
+        addRecordButtton.clipsToBounds = true
+        addRecordButtton.isEnabled = true
+        addRecordButtton.isUserInteractionEnabled = true
     }
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([imageView, textView, dateLabel])
+            self.sv([imageView, textView, dateLabel, addRecordButtton])
             
             imageView.height(35%).width(100%)
             textView.height(65%).width(100%)
+            dateLabel.height(10%).width(80%).left(2%)
+            addRecordButtton.height(6%).width(45%).right(2%).bottom(2%)
+            
+            dateLabel.Bottom == imageView.Bottom
             imageView.Top == self.Top
+            imageView.Bottom == textView.Top
             textView.Bottom == self.Bottom
             
-            dateLabel.height(10%).width(80%).left(5)
-            dateLabel.Bottom == imageView.Bottom
-            
-            imageView.Bottom == textView.Top
             
             addRecordButtton.Bottom == textView.Bottom
             addRecordButtton.Right == textView.Right

@@ -20,9 +20,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Add a record"
-        hero.isEnabled = true
-        navigationController?.isNavigationBarHidden = false
+        
         SetControlDefaults()
         render()
         AddTapGestures()
@@ -32,6 +30,10 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     func SetControlDefaults(){
+        
+        self.title = "Add a record"
+        hero.isEnabled = true
+        
         databaseReference = Database.database().reference()
         
         addRecordView = AddRecordView(frame: view.bounds)
@@ -54,7 +56,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = UIDatePicker.Mode.date
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
-//        dobField.inputView = datePicker
+        addRecordView.dateLabel.inputView = datePicker
         
     }
 
