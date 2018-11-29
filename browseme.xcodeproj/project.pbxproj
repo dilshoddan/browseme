@@ -18,10 +18,10 @@
 		84100F3821A937E900A24666 /* browsemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84100F3721A937E900A24666 /* browsemeUITests.swift */; };
 		841AB34521AE79D100CDEBC5 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AB34421AE79D100CDEBC5 /* NotificationsView.swift */; };
 		841AB34721AE7F4A00CDEBC5 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AB34621AE7F4900CDEBC5 /* NotificationsViewController.swift */; };
-		841AB34921AE8B8A00CDEBC5 /* FirebaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AB34821AE8B8A00CDEBC5 /* FirebaseWorker.swift */; };
-		841AB34B21AEB81500CDEBC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AB34A21AEB81500CDEBC5 /* Extensions.swift */; };
 		842EC08F21A950D0003E2B7C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EC08E21A950D0003E2B7C /* MainNavigationController.swift */; };
 		8436F83C21AD83800061763B /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436F83B21AD83800061763B /* ColorConstants.swift */; };
+		844AB68321AFE8560083961F /* FirebaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB68121AFE8560083961F /* FirebaseWorker.swift */; };
+		844AB68421AFE8560083961F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB68221AFE8560083961F /* Extensions.swift */; };
 		844CD8E621AE713B003691D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 844CD8E521AE713B003691D7 /* GoogleService-Info.plist */; };
 		844D4F3721AED1A2007755C5 /* AddRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D4F3621AED1A2007755C5 /* AddRecordViewController.swift */; };
 		844D4F3921AED1BF007755C5 /* AddRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D4F3821AED1BF007755C5 /* AddRecordView.swift */; };
@@ -66,10 +66,10 @@
 		84100F3921A937E900A24666 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		841AB34421AE79D100CDEBC5 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		841AB34621AE7F4900CDEBC5 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
-		841AB34821AE8B8A00CDEBC5 /* FirebaseWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseWorker.swift; path = browseme/Controller/FirebaseWorker.swift; sourceTree = SOURCE_ROOT; };
-		841AB34A21AEB81500CDEBC5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = browseme/Controller/Extensions.swift; sourceTree = SOURCE_ROOT; };
 		842EC08E21A950D0003E2B7C /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		8436F83B21AD83800061763B /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
+		844AB68121AFE8560083961F /* FirebaseWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseWorker.swift; sourceTree = "<group>"; };
+		844AB68221AFE8560083961F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		844CD8E521AE713B003691D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		844D4F3621AED1A2007755C5 /* AddRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordViewController.swift; sourceTree = "<group>"; };
 		844D4F3821AED1BF007755C5 /* AddRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordView.swift; sourceTree = "<group>"; };
@@ -145,14 +145,14 @@
 		84100F1621A937E700A24666 /* browseme */ = {
 			isa = PBXGroup;
 			children = (
+				844AB68021AFE8380083961F /* Model */,
+				84100F4621A9381700A24666 /* View */,
+				84100F4721A9381E00A24666 /* Controller */,
+				84100F4821A9382900A24666 /* Singleton */,
 				844CD8E521AE713B003691D7 /* GoogleService-Info.plist */,
 				84100F2021A937E900A24666 /* LaunchScreen.storyboard */,
 				84100F1E21A937E900A24666 /* Assets.xcassets */,
 				84100F2321A937E900A24666 /* Info.plist */,
-				84100F4821A9382900A24666 /* Singleton */,
-				84100F4721A9381E00A24666 /* Controller */,
-				84100F4621A9381700A24666 /* View */,
-				84100F4521A9380D00A24666 /* Model */,
 			);
 			path = browseme;
 			sourceTree = "<group>";
@@ -173,15 +173,6 @@
 				84100F3921A937E900A24666 /* Info.plist */,
 			);
 			path = browsemeUITests;
-			sourceTree = "<group>";
-		};
-		84100F4521A9380D00A24666 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				841AB34821AE8B8A00CDEBC5 /* FirebaseWorker.swift */,
-				841AB34A21AEB81500CDEBC5 /* Extensions.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		84100F4621A9381700A24666 /* View */ = {
@@ -212,6 +203,15 @@
 				84100F1721A937E700A24666 /* AppDelegate.swift */,
 			);
 			path = Singleton;
+			sourceTree = "<group>";
+		};
+		844AB68021AFE8380083961F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				844AB68221AFE8560083961F /* Extensions.swift */,
+				844AB68121AFE8560083961F /* FirebaseWorker.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F44F1E276453E0B8E8835EB8 /* Frameworks */ = {
@@ -461,15 +461,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				84100F1A21A937E700A24666 /* MainViewController.swift in Sources */,
-				841AB34B21AEB81500CDEBC5 /* Extensions.swift in Sources */,
 				84043EAC21A9395800349BD2 /* MainView.swift in Sources */,
 				844D4F3721AED1A2007755C5 /* AddRecordViewController.swift in Sources */,
-				841AB34921AE8B8A00CDEBC5 /* FirebaseWorker.swift in Sources */,
 				842EC08F21A950D0003E2B7C /* MainNavigationController.swift in Sources */,
+				844AB68321AFE8560083961F /* FirebaseWorker.swift in Sources */,
 				8436F83C21AD83800061763B /* ColorConstants.swift in Sources */,
 				84100F1821A937E700A24666 /* AppDelegate.swift in Sources */,
 				844D4F3921AED1BF007755C5 /* AddRecordView.swift in Sources */,
 				841AB34521AE79D100CDEBC5 /* NotificationsView.swift in Sources */,
+				844AB68421AFE8560083961F /* Extensions.swift in Sources */,
 				841AB34721AE7F4A00CDEBC5 /* NotificationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
