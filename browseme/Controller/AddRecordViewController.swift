@@ -36,12 +36,11 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         
         self.title = "Add a record"
         hero.isEnabled = true
-        
         databaseReference = Database.database().reference()
         
         addRecordView = AddRecordView(frame: view.bounds)
         firebaseWorker = FirebaseWorker()
-        navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = true
     }
     
     func render(){

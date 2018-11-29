@@ -78,7 +78,7 @@ class AddRecordView: UIView {
             imageView.height(35%).width(100%)
             textView.height(65%).width(100%)
             dateLabel.height(5%).width(80%).left(2%)
-            imageNameLabel.height(3%).width(20%).right(2%)
+            imageNameLabel.height(3%).width(20%).right(1%)
             saveToFirebase.height(6%).width(45%).right(2%).bottom(2%)
             
             
