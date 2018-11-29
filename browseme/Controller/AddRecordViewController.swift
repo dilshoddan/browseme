@@ -57,14 +57,14 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.medium
         formatter.timeStyle = DateFormatter.Style.none
-        addRecordView.dateLabel.text = formatter.string(from: sender.date)
+        addRecordView.dateTextField.text = formatter.string(from: sender.date)
     }
     
     @objc func PickADate(recognizer:UITapGestureRecognizer){
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = UIDatePicker.Mode.date
         datePicker.addTarget(self, action: #selector(DatePickerValueChanged(sender:)), for: .valueChanged)
-        addRecordView.dateLabel.inputView = datePicker
+        addRecordView.dateTextField.inputView = datePicker
     }
     
     @objc func PickAnImage(recognizer:UITapGestureRecognizer){
@@ -93,10 +93,10 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func AddTapGestures(){
-        addRecordView.dateLabel.isEnabled = true
-        addRecordView.dateLabel.isUserInteractionEnabled = true
+        addRecordView.dateTextField.isEnabled = true
+        addRecordView.dateTextField.isUserInteractionEnabled = true
         let pickADateTapGesture = UITapGestureRecognizer(target: self, action: #selector(PickADate(recognizer:)))
-        addRecordView.dateLabel.addGestureRecognizer(pickADateTapGesture)
+        addRecordView.dateTextField.addGestureRecognizer(pickADateTapGesture)
         
         addRecordView.imageView.isUserInteractionEnabled = true
         let pickAnImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(PickAnImage(recognizer:)))

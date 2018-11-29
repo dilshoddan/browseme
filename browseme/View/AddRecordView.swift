@@ -12,7 +12,7 @@ import Stevia
 class AddRecordView: UIView {
 
     public var shouldSetupConstraints: Bool!
-    public var dateLabel: UITextField!
+    public var dateTextField: UITextField!
     public var imageNameLabel: UITextField!
     public var imageView: UIImageView!
     public var textView: UITextView!
@@ -33,15 +33,21 @@ class AddRecordView: UIView {
     func SetControlDefaults(){
         self.backgroundColor = .white
         
-        dateLabel = UITextField()
-        dateLabel.text = Date().ToString(dateFormat: "dd-MMM-yyyy")
-        dateLabel.tintColor = .white
-        dateLabel.font = UIFont(name: "Times New Roman", size: 32)
+        dateTextField = UITextField()
+        dateTextField.text = Date().ToString(dateFormat: "dd-MMM-yyyy")
+        dateTextField.tintColor = .white
+        dateTextField.font = UIFont(name: "Times New Roman", size: 32)
+        dateTextField.textColor = UIColor.white
+        dateTextField.isEnabled = false
+        dateTextField.isUserInteractionEnabled = false
         
         imageNameLabel = UITextField()
         imageNameLabel.tintColor = .white
         imageNameLabel.font = UIFont(name: "Times New Roman", size: 10)
         imageNameLabel.text = "placeholder"
+        imageNameLabel.textColor = UIColor.white
+        imageNameLabel.isEnabled = false
+        imageNameLabel.isUserInteractionEnabled = false
         
         
         imageView = UIImageView()
@@ -74,12 +80,12 @@ class AddRecordView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([imageView, textView, dateLabel, saveToFirebase, imageNameLabel, backButton])
+            self.sv([imageView, textView, dateTextField, saveToFirebase, imageNameLabel, backButton])
             
             imageView.Top == self.Top
             imageView.Bottom == textView.Top
             textView.Bottom == self.Bottom
-            dateLabel.Bottom == imageView.Bottom
+            dateTextField.Bottom == imageView.Bottom
             backButton.Top == self.Top
             backButton.Left == self.Left
             imageNameLabel.Bottom == backButton.Top
@@ -89,7 +95,7 @@ class AddRecordView: UIView {
             
             imageView.height(35%).width(100%)
             textView.height(65%).width(100%)
-            dateLabel.height(5%).width(80%).left(2%)
+            dateTextField.height(5%).width(80%).left(2%)
             saveToFirebase.height(6%).width(45%).right(2%).bottom(2%)
             imageNameLabel.height(3%).width(30%).top(4%)
             backButton.height(4%).width(18%).top(6%)
