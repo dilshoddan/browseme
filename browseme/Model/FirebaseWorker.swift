@@ -29,7 +29,7 @@ class FirebaseWorker{
     }
     
     public func CreateANotification(_ databaseReference: DatabaseReference, date: String, imageUrl: String, notes: String){
-        databaseReference.child("notifications").child("notification").childByAutoId().setValuesForKeys(["date":date, "imageUrl":imageUrl, "notes":notes])
+        databaseReference.child("notifications").child("notification").setValuesForKeys(["date":date, "imageUrl":imageUrl, "notes":notes])
     }
     
     public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textView: UITextView){
@@ -63,27 +63,4 @@ class FirebaseWorker{
         }
     }
 }
-
-//import below JSON structure to firebase
-//    // The root of the tree
-//    {
-//        // grocery-items
-//        "grocery-items": {
-//            
-//            // grocery-items/milk
-//            "milk": {
-//                
-//                // grocery-items/milk/name
-//                "name": "Milk",
-//                
-//                // grocery-items/milk/addedByUser
-//                "addedByUser": "David"
-//            },
-//            
-//            "pizza": {
-//                "name": "Pizza",
-//                "addedByUser": "Alice"
-//            },
-//        }
-//}
 
