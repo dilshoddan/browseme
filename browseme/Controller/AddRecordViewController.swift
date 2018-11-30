@@ -87,7 +87,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         }
         addRecordView.imageView.image = selectedImage
         imageFileName = ""
-//        firebaseWorker.uploadImage(selectedImage, addRecordView.imageNameLabel)
+        firebaseWorker.uploadImage(selectedImage, addRecordView.imageNameLabel)
         picker.dismiss(animated: true, completion: nil)
     }
     

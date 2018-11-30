@@ -43,7 +43,7 @@ class FirebaseWorker{
     public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textView: UITextView){
         //var dbHandle =
         self.returnedData = []
-        databaseReference.child("name").observe(.childAdded, with: {(data) in
+        databaseReference.child("name").queryLimited(toLast: 1).observe(.childAdded, with: {(data) in
             let name = (data.value as? String)!
             self.returnedData.append(name)
             textView.text = name
