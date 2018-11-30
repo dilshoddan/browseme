@@ -28,8 +28,8 @@ class NotificationsViewController: UIViewController {
         SetControlDefaults()
         render()
         
-//        SetFirebaseDefaults()
-//        firebaseWorker.ReadFirebaseNotificationData(with: databaseReference, writeTo: notificationsView.textView)
+        SetFirebaseDefaults()
+        firebaseWorker.ReadFirebaseNotificationData(with: databaseReference, writeTo: notificationsView.textView)
         
     }
     

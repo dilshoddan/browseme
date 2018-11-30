@@ -31,7 +31,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         SetControlDefaults()
         render()
         AddTapGestures()
-//        SetFirebaseDefaults()
+        SetFirebaseDefaults()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
