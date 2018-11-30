@@ -43,7 +43,7 @@ class FirebaseWorker{
             "notes": notes
         ]
         let notification = ["notification" : notificationJSON]
-        databaseReference.child("notifications").child("notification").childByAutoId().setValue(notification)
+        databaseReference.child("notifications").child("notification").childByAutoId().setValue(notificationJSON)
     }
     
     public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textView: UITextView){
