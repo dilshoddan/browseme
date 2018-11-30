@@ -56,17 +56,21 @@ class FirebaseWorker{
         let randomImageName = "Image_" + String(Int.random(in: Int.min ... Int.max)) + ".jpg"
         let imageData = image.jpegData(compressionQuality: 1.0)!
         //UIImageJPEGRepresentation(image, 1.0)
-        let uploadRef = Storage.storage().reference().child("images/notificationImages/\(randomImageName).jpg")
-        _ = uploadRef.putData(imageData, metadata: nil) { metadata,
-            error in
-            if error == nil {
-                //success
-                self.imageName = randomImageName
-                self.fileUploaded = true
-                
-            } else {
-                //error
-                self.fileUploaded = false
+        let userDefaults = UserDefaults.standard
+        let firebaseImagePath = userDefaults.string(forKey: "FirebaseImagePath")
+        if let firebaseImagePath = firebaseImagePath {
+            let uploadRef = Storage.storage().reference().child("\(firebaseImagePath)\(randomImageName).jpg")
+            _ = uploadRef.putData(imageData, metadata: nil) { metadata,
+                error in
+                if error == nil {
+                    //success
+                    self.imageName = randomImageName
+                    self.fileUploaded = true
+                    
+                } else {
+                    //error
+                    self.fileUploaded = false
+                }
             }
         }
     }

@@ -11,7 +11,8 @@ import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    public var userDefaults = UserDefaults.standard
     var window: UIWindow?
     var mainNavigationController: UINavigationController!
 
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.makeKeyAndVisible()
         }
         FirebaseApp.configure()
+        userDefaults.set("images/notificationImages/", forKey: "FirebaseImagePath")
         return true
     }
 
