@@ -29,7 +29,21 @@ class FirebaseWorker{
     }
     
     public func CreateANotification(_ databaseReference: DatabaseReference, date: String, imageUrl: String, notes: String){
-        databaseReference.child("notifications").child("notification").setValuesForKeys(["date":date, "imageUrl":imageUrl, "notes":notes])
+//        databaseReference.child("notifications").child("notification").setValuesForKeys(["date":date, "imageUrl":imageUrl, "notes":notes])
+        
+//        let key = databaseRef.child("notifications").child("notification").childByAutoId().key
+//        let recipeItem: [String : Any] = ["recipeName" : itemNameText, "recipeID" : key]
+//        let recipe = ["\(recipeKey)" : recipeItem]
+//
+//        databaseRef.child("RecipeData").child("recipe").updateChildValues(recipe)
+        
+        let notificationJSON: [String : String] = [
+            "date" : date,
+            "imageUrl" : imageUrl,
+            "notes": notes
+        ]
+        let notification = ["notification" : notificationJSON]
+        databaseReference.child("notifications").child("notification").childByAutoId().setValue(notification)
     }
     
     public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textView: UITextView){

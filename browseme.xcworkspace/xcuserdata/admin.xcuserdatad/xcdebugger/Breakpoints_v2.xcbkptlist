@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "browseme/Model/FirebaseWorker.swift"
-            timestampString = "565277741.407337"
+            timestampString = "565278278.388344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "CreateANotification(_:date:imageUrl:notes:)"
             landmarkType = "7">
          </BreakpointContent>
