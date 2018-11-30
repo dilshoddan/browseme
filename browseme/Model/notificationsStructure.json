@@ -1,0 +1,18 @@
+//
+//  File.swift
+//  browseme
+//
+//  Created by Admin on 11/30/18.
+//  Copyright © 2018 Admin. All rights reserved.
+//
+
+{
+    "notifications" : {
+        "notification" : {
+            "date" : "30-Nov-2018",
+            "imageUrl" : "images/notificationImages/Image_-4422548243735051531.jpg.jpg"
+            "notes" : "some text"
+        }
+    }
+    
+}

@@ -11,33 +11,25 @@ import FirebaseDatabase
 import FirebaseStorage
 
 class FirebaseWorker{
-    
-    private var imageName: String!
-    private var imageFile: UIImage!
     private var imageNameLabel: UITextField!
-    public var fileUploaded: Bool {
-        didSet{
-            if fileUploaded {
-                self.imageNameLabel.text = self.imageName
-            }
-            
-        }
-    }
+    public var fileUploaded: Bool!
     
     private var databaseHandle: DatabaseHandle!
     public var returnedData: [String]!
     
     init() {
         returnedData = []
-        imageFile = UIImage()
         fileUploaded = false
         imageNameLabel = UITextField()
-        imageName = ""
     }
     
     public func CreateRecordIntoFirebase(_ databaseReference: DatabaseReference){
         databaseReference.child("name").childByAutoId().setValue("Nigel")
         databaseReference.child("name").childByAutoId().setValue("Richard")
+    }
+    
+    public func CreateANotification(_ databaseReference: DatabaseReference, date: String, imageUrl: String, notes: String){
+        databaseReference.child("notifications").child("notification").childByAutoId().setValuesForKeys(["date":date, "imageUrl":imageUrl, "notes":notes])
     }
     
     public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textView: UITextView){
@@ -51,11 +43,8 @@ class FirebaseWorker{
     }
     
     public func uploadImage(_ image: UIImage, _ imageNameLabel: UITextField) {
-        self.imageNameLabel = imageNameLabel
-        imageFile = image
         let randomImageName = "Image_" + String(Int.random(in: Int.min ... Int.max)) + ".jpg"
         let imageData = image.jpegData(compressionQuality: 1.0)!
-        //UIImageJPEGRepresentation(image, 1.0)
         let userDefaults = UserDefaults.standard
         let firebaseImagePath = userDefaults.string(forKey: "FirebaseImagePath")
         if let firebaseImagePath = firebaseImagePath {
@@ -63,8 +52,7 @@ class FirebaseWorker{
             _ = uploadRef.putData(imageData, metadata: nil) { metadata,
                 error in
                 if error == nil {
-                    //success
-                    self.imageName = randomImageName
+                    imageNameLabel.text = randomImageName
                     self.fileUploaded = true
                     
                 } else {

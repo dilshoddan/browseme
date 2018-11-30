@@ -13,9 +13,13 @@ class AddRecordView: UIView {
 
     public var shouldSetupConstraints: Bool!
     public var dateTextField: UITextField!
-    public var imageNameLabel: UITextField!
+    public var imageNameLabel: UITextField! {
+        didSet{
+            setNeedsDisplay()
+        }
+    }
     public var imageView: UIImageView!
-    public var textView: UITextView!
+    public var notes: UITextView!
     public var saveToFirebase: UIButton!
     public var backButton: UIButton!
     
@@ -54,10 +58,10 @@ class AddRecordView: UIView {
         imageView.backgroundColor = UIColor.gray
         imageView.clipsToBounds = true
         
-        textView = UITextView()
-        textView.isEditable = true
-        textView.isUserInteractionEnabled = true
-        textView.font = UIFont(name: "Times New Roman", size: 18)
+        notes = UITextView()
+        notes.isEditable = true
+        notes.isUserInteractionEnabled = true
+        notes.font = UIFont(name: "Times New Roman", size: 18)
         
         saveToFirebase = UIButton()
         saveToFirebase.backgroundColor = ColorConstants.notificationsViewBackButtonColor
@@ -80,11 +84,11 @@ class AddRecordView: UIView {
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([imageView, textView, dateTextField, saveToFirebase, imageNameLabel, backButton])
+            self.sv([imageView, notes, dateTextField, saveToFirebase, imageNameLabel, backButton])
             
             imageView.Top == self.Top
-            imageView.Bottom == textView.Top
-            textView.Bottom == self.Bottom
+            imageView.Bottom == notes.Top
+            notes.Bottom == self.Bottom
             dateTextField.Bottom == imageView.Bottom
             backButton.Top == self.Top
             backButton.Left == self.Left
@@ -94,10 +98,10 @@ class AddRecordView: UIView {
 //            saveToFirebase.Bottom == textView.Bottom
             
             imageView.height(35%).width(100%)
-            textView.height(65%).width(100%)
+            notes.height(65%).width(100%)
             dateTextField.height(5%).width(80%).left(2%)
             saveToFirebase.height(6%).width(45%).right(2%).bottom(2%)
-            imageNameLabel.height(3%).width(30%).top(4%)
+            imageNameLabel.height(3%).width(50%).top(4%)
             backButton.height(4%).width(18%).top(6%)
             
         }

@@ -18,7 +18,6 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
     private var addRecordView: AddRecordView!
     private var databaseReference: DatabaseReference!
     private var firebaseWorker: FirebaseWorker!
-    private var imageFileName = ""
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
@@ -50,6 +49,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         hero.isEnabled = true
         addRecordView = AddRecordView(frame: view.bounds)
         addRecordView.backButton.addTarget(self, action: #selector(BackButtonTapped), for: .touchUpInside)
+        addRecordView.saveToFirebase.addTarget(self, action: #selector(SaveNotificationToFirebase), for: .touchUpInside)
         addRecordView.dateTextField.delegate = self
     }
     
@@ -57,6 +57,22 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         view.sv(addRecordView)
         addRecordView.height(100%).width(100%).centerInContainer()
         addRecordView.updateConstraints()
+    }
+    
+    @objc func SaveNotificationToFirebase(){
+        let userDefaults = UserDefaults.standard
+        let firebaseImagePath = userDefaults.string(forKey: "FirebaseImagePath")
+        let date = addRecordView.dateTextField.text
+        let imageUrl = addRecordView.imageNameLabel.text
+        let notes = addRecordView.notes.text
+        if let firebaseImagePath = firebaseImagePath, let date = date, let imageUrl = imageUrl, let notes = notes{
+            firebaseWorker.CreateANotification(databaseReference, date: date, imageUrl: firebaseImagePath + imageUrl, notes: notes)
+        }
+        else{
+            let alertController = UIAlertController(title: "Saving is impossible", message: "Make sure all properties are set", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
     }
     
     @objc func DatePickerValueChanged(sender: UIDatePicker) {
@@ -86,7 +102,6 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         addRecordView.imageView.image = selectedImage
-        imageFileName = ""
         firebaseWorker.uploadImage(selectedImage, addRecordView.imageNameLabel)
         picker.dismiss(animated: true, completion: nil)
     }

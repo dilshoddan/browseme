@@ -3,25 +3,33 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "FirebaseWorker.CreateANotification(_:date:imageUrl:notes:):FirebaseWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "date">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "NotificationsView.SetControlDefaults():NotificationsView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "today!">
+               value = "Date().ToString(dateFormat: &quot;dd-MMM-yyyy&quot;)">
             </PersistentString>
             <PersistentString
                value = "Date()">
             </PersistentString>
             <PersistentString
-               value = "String(describing: Date())">
+               value = "dateLabel.text">
             </PersistentString>
             <PersistentString
                value = "formatter.date(Date())">
             </PersistentString>
             <PersistentString
-               value = "Date().ToString(dateFormat: &quot;dd-MMM-yyyy&quot;)">
+               value = "today!">
             </PersistentString>
             <PersistentString
-               value = "dateLabel.text">
+               value = "String(describing: Date())">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -30,6 +38,9 @@
          <PersistentStrings>
             <PersistentString
                value = "imageFileName">
+            </PersistentString>
+            <PersistentString
+               value = "addRecordView.imageNameLabel.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -65,10 +76,18 @@
                value = "imageName">
             </PersistentString>
             <PersistentString
-               value = "fileUploaded">
+               value = "self.imageName">
             </PersistentString>
             <PersistentString
-               value = "self.imageName">
+               value = "fileUploaded">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FirebaseWorker.uploadImage(_:_:):FirebaseWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "userDefaults.string(forKey: &quot;FirebaseImagePath&quot;)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -84,10 +103,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AddRecordViewController.SaveNotificationToFirebase():AddRecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "addRecordView.notes.text">
+            </PersistentString>
+            <PersistentString
+               value = "firebaseImagePath + imageUrl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainViewController.SegmentedControlValueChanged(segment:):MainViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "segment.selectedSegmentIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in FirebaseWorker.uploadImage(_:_:):FirebaseWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "imageNameLabel.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
