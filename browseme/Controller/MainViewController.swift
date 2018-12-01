@@ -30,7 +30,7 @@ class MainViewController: UIViewController, WKNavigationDelegate {
         SetControllerDefaults()
         render()
 //        SetFirebaseDefaults()
-//        RedirectTo("https://www.apple.com")
+        RedirectTo("https://www.apple.com")
 //        firebaseWorked.CreateRecordIntoFirebase(databaseReference)
     }
     

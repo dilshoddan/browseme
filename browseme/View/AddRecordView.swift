@@ -48,7 +48,7 @@ class AddRecordView: UIView {
         imageNameLabel = UITextField()
         imageNameLabel.tintColor = .white
         imageNameLabel.font = UIFont(name: "Times New Roman", size: 10)
-        imageNameLabel.text = "placeholder"
+        imageNameLabel.text = ""
         imageNameLabel.textColor = UIColor.white
         imageNameLabel.isEnabled = false
         imageNameLabel.isUserInteractionEnabled = false

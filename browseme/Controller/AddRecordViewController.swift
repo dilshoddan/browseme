@@ -60,19 +60,27 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @objc func SaveNotificationToFirebase(){
-        let userDefaults = UserDefaults.standard
-        let firebaseImagePath = userDefaults.string(forKey: "FirebaseImagePath")
         let date = addRecordView.dateTextField.text
-        let imageUrl = addRecordView.imageNameLabel.text
         let notes = addRecordView.notes.text
-        if let firebaseImagePath = firebaseImagePath, let date = date, let imageUrl = imageUrl, let notes = notes{
-            firebaseWorker.CreateANotification(databaseReference, date: date, imageUrl: firebaseImagePath + imageUrl, notes: notes)
-        }
-        else{
-            let alertController = UIAlertController(title: "Saving is impossible", message: "Make sure all properties are set", preferredStyle: .alert)
-            self.present(alertController, animated: true, completion: nil)
-        }
-        
+        let image = addRecordView.imageView.image
+        let imageName = addRecordView.imageNameLabel.text
+//        if firebaseWorker.fileUploaded {
+            if let date = date, let notes = notes, let image = image, let imageName = imageName,!(imageName.isEmpty){
+                firebaseWorker.CreateANotification(databaseReference, date: date, notes: notes, selectedImage: image, withImageName: imageName, viewController: self)
+            }
+            else{
+                let alertController = UIAlertController(title: "Sorry, cannot save now", message: "Make sure all properties are set", preferredStyle: .alert)
+                self.present(alertController, animated: true, completion: nil)
+            }
+//        }
+//        else {
+//            let alertController = UIAlertController(title: "Sorry, cannot save now", message: "Please wait while the image saved to the server", preferredStyle: .alert)
+//            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+//                print("Please wait while the image saved to the server")
+//            }))
+//            self.present(alertController, animated: true, completion: nil)
+//        }
+//
     }
     
     @objc func DatePickerValueChanged(sender: UIDatePicker) {
@@ -101,8 +109,9 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         guard let selectedImage = info[.originalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
+        let randomImageName = "Image_" + String(Int.random(in: Int.min ... Int.max)) + ".jpg"
+        addRecordView.imageNameLabel.text = randomImageName
         addRecordView.imageView.image = selectedImage
-        firebaseWorker.uploadImage(selectedImage, addRecordView.imageNameLabel)
         picker.dismiss(animated: true, completion: nil)
     }
     
