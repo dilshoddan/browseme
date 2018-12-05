@@ -11,6 +11,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AddRecordViewController.SaveNotificationToFirebase():AddRecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "FirebaseWorker">
+            </PersistentString>
+            <PersistentString
+               value = "addRecordView.notes.text">
+            </PersistentString>
+            <PersistentString
+               value = "firebaseWorker.fileUploaded">
+            </PersistentString>
+            <PersistentString
+               value = "addRecordView.imageView">
+            </PersistentString>
+            <PersistentString
+               value = "FirebaseWorker.fileUploaded">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "FirebaseWorker.fileUploaded.didset:FirebaseWorker.swift">
          <PersistentStrings>
             <PersistentString
@@ -24,23 +44,6 @@
             </PersistentString>
             <PersistentString
                value = "fileUploaded">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AddRecordViewController.SaveNotificationToFirebase():AddRecordViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "FirebaseWorker">
-            </PersistentString>
-            <PersistentString
-               value = "addRecordView.notes.text">
-            </PersistentString>
-            <PersistentString
-               value = "firebaseWorker.fileUploaded">
-            </PersistentString>
-            <PersistentString
-               value = "FirebaseWorker.fileUploaded">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -67,22 +70,22 @@
          contextName = "NotificationsView.SetControlDefaults():NotificationsView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "today!">
+               value = "Date().ToString(dateFormat: &quot;dd-MMM-yyyy&quot;)">
             </PersistentString>
             <PersistentString
                value = "Date()">
             </PersistentString>
             <PersistentString
-               value = "String(describing: Date())">
+               value = "dateLabel.text">
             </PersistentString>
             <PersistentString
                value = "formatter.date(Date())">
             </PersistentString>
             <PersistentString
-               value = "Date().ToString(dateFormat: &quot;dd-MMM-yyyy&quot;)">
+               value = "today!">
             </PersistentString>
             <PersistentString
-               value = "dateLabel.text">
+               value = "String(describing: Date())">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

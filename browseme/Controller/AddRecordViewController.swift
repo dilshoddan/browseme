@@ -66,7 +66,8 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         let imageName = addRecordView.imageNameLabel.text
 //        if firebaseWorker.fileUploaded {
             if let date = date, let notes = notes, let image = image, let imageName = imageName,!(imageName.isEmpty){
-                firebaseWorker.CreateANotification(databaseReference, date: date, notes: notes, selectedImage: image, withImageName: imageName, viewController: self)
+                firebaseWorker.uploadImage(databaseReference, date: date, notes: notes, selectedImage: image, withImageName: imageName, viewController: self)
+                //CreateANotification(databaseReference, date: date, notes: notes, selectedImage: image, withImageName: imageName, viewController: self)
             }
             else{
                 let alertController = UIAlertController(title: "Sorry, cannot save now", message: "Make sure all properties are set", preferredStyle: .alert)
