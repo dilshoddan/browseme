@@ -16,22 +16,22 @@ class FirebaseWorker {
     public var fileUploaded: Bool!
     private var databaseReference: DatabaseReference!
     private var storage: Storage!
-    public let userDefaults = UserDefaults.standard
+    private let firebaseImagePath = UserDefaults.standard.string(forKey: "FirebaseImagePath")
+    private let notificationsPath = UserDefaults.standard.string(forKey: "FirebaseNotificationPath")
     
     private var databaseHandle: DatabaseHandle!
-    public var returnedData: [String]!
+    public var notificationReturnValue: [String: Any]!
     
     init() {
-        returnedData = []
         fileUploaded = false
         imageNameLabel = UITextField()
         databaseReference = Database.database().reference()
         storage = Storage.storage()
+        notificationReturnValue = [String: Any]()
     }
     
     
     public func CreateANotification(date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController) {
-        let firebaseImagePath = userDefaults.string(forKey: "FirebaseImagePath")
         if let firebaseImagePath = firebaseImagePath {
             if fileUploaded {
                 let notificationJSON: [String : String] = [
@@ -40,7 +40,7 @@ class FirebaseWorker {
                     "notes": notes
                 ]
                 databaseReference.child("notifications").child("notification").childByAutoId().setValue(notificationJSON)
-                let alertController = UIAlertController(title: "Saved", message: "Saved", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Saved", message: "", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                     print("Saved")
                 }))
@@ -59,34 +59,56 @@ class FirebaseWorker {
     
     
     
-    public func ReadFirebaseNotificationData() -> [String: Any] {
-        var dictionary = [String: Any]()
-        let notificationsPath = userDefaults.string(forKey: "FirebaseNotificationPath")
-        if let notificationsPath = notificationsPath {
-            databaseReference.child(notificationsPath).queryLimited(toLast: 1).observe(.childAdded, with: {(data) in
-                dictionary = (data.value as? [String: Any])!
-                let imageUrl = (dictionary["imageUrl"] as? String)
-                if let imageUrl = imageUrl {
-                    //max size 40MB
-                    self.storage.reference(withPath: imageUrl).getData(maxSize: (40*1024*1024), completion: { data, error in
-                        if error == nil {
-                            if let data = data {
-                                let image = UIImage(data: data)!
-                                dictionary["image"] = image
-                            }
-                        }
-                    })
-                }
-            })
+    public func ReadFirebaseNotificationData(_ notificationDate: UILabel, _ notificationNotes: UITextView, _ notificationImageView: UIImageView) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.notificationReturnValue = [String: Any]()
+            if let notificationsPath = self.notificationsPath {
+                let downloadGroup = DispatchGroup()
+                downloadGroup.enter()
+                self.databaseReference.child(notificationsPath).queryLimited(toLast: 1).observe(.childAdded, with: {(data) in
+                    self.notificationReturnValue = (data.value as? [String: Any])!
+                    let imageUrl = (self.notificationReturnValue["imageUrl"] as? String)
+                    let date = (self.notificationReturnValue["date"] as? String)
+                    let notes = (self.notificationReturnValue["notes"] as? String)
+                    if let date = date, let notes = notes {
+                        notificationDate.text = date
+                        notificationNotes.text = notes
+                    }
+                    if let imageUrl = imageUrl {
+                        self.ReadFirebaseNotificationImage(imageUrl, notificationImageView)
+                        //max size 40MB
+                        downloadGroup.leave()
+                    }
+                })
+                downloadGroup.wait()
+            }
         }
-        return dictionary
+        
+    }
+    
+    public func ReadFirebaseNotificationImage(_ imageUrl: String, _ notificationImageView: UIImageView){
+        DispatchQueue.global(qos: .userInitiated).async {
+            let downloadGroup = DispatchGroup()
+            downloadGroup.enter()
+            self.storage.reference(withPath: imageUrl).getData(maxSize: (40*1024*1024), completion: { data, error in
+                if error == nil {
+                    if let data = data {
+                        let image = UIImage(data: data)!
+                        self.notificationReturnValue["image"] = image
+                        notificationImageView.image = image
+                        downloadGroup.leave()
+                    }
+                }
+                
+            })
+            downloadGroup.wait()
+        }
     }
     
 
     
     public func uploadImage(date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController) {
         DispatchQueue.global(qos: .userInitiated).async {
-            var storedError: Error?
             let downloadGroup = DispatchGroup()
             self.fileUploaded = false
             let imageData = selectedImage.jpegData(compressionQuality: 1.0)!
@@ -100,7 +122,6 @@ class FirebaseWorker {
                     error in
                     if error != nil {
                         self.fileUploaded = false
-                        storedError = error
                     }
                     downloadGroup.leave()
                 }
