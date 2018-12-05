@@ -23,11 +23,12 @@ class NotificationsViewController: UIViewController {
         super.viewDidLoad()
         
         hero.isEnabled = true
+        SetFirebaseDefaults()
         SetControlDefaults()
         render()
         
-        SetFirebaseDefaults()
-        firebaseWorker.ReadFirebaseNotificationData(writeTo: notificationsView.textView)
+        
+        
         
     }
     
@@ -39,6 +40,16 @@ class NotificationsViewController: UIViewController {
         notificationsView = NotificationsView(frame: view.bounds)
         notificationsView.addRecordButtton.addTarget(self, action: #selector(AddRecordAction), for: .touchUpInside)
         notificationsView.backButton.addTarget(self, action: #selector(BackButtonTapped), for: .touchUpInside)
+        let dictionary = firebaseWorker.ReadFirebaseNotificationData()
+        let date = dictionary["date"] as? String
+        let notes = dictionary["notes"] as? String
+        let image = dictionary["image"] as? UIImage
+        if let date = date, let notes = notes, let image = image {
+            notificationsView.dateLabel.text = date
+            notificationsView.textView.text = notes
+            notificationsView.imageView.image = image
+        }
+        
     }
     
     func render(){

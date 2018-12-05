@@ -15,6 +15,7 @@ class FirebaseWorker {
     private var imageNameLabel: UITextField!
     public var fileUploaded: Bool!
     private var databaseReference: DatabaseReference!
+    private var storage: Storage!
     public let userDefaults = UserDefaults.standard
     
     private var databaseHandle: DatabaseHandle!
@@ -25,6 +26,7 @@ class FirebaseWorker {
         fileUploaded = false
         imageNameLabel = UITextField()
         databaseReference = Database.database().reference()
+        storage = Storage.storage()
     }
     
     
@@ -57,17 +59,27 @@ class FirebaseWorker {
     
     
     
-    public func ReadFirebaseNotificationData(writeTo textView: UITextView) -> [String: Any] {
-        self.returnedData = []
+    public func ReadFirebaseNotificationData() -> [String: Any] {
+        var dictionary = [String: Any]()
         let notificationsPath = userDefaults.string(forKey: "FirebaseNotificationPath")
         if let notificationsPath = notificationsPath {
             databaseReference.child(notificationsPath).queryLimited(toLast: 1).observe(.childAdded, with: {(data) in
-                let name = (data.value as? String)!
-                self.returnedData.append(name)
-                textView.text = name
+                dictionary = (data.value as? [String: Any])!
+                let imageUrl = (dictionary["imageUrl"] as? String)
+                if let imageUrl = imageUrl {
+                    //max size 40MB
+                    self.storage.reference(withPath: imageUrl).getData(maxSize: (40*1024*1024), completion: { data, error in
+                        if error == nil {
+                            if let data = data {
+                                let image = UIImage(data: data)!
+                                dictionary["image"] = image
+                            }
+                        }
+                    })
+                }
             })
         }
-        return [String: Any]()
+        return dictionary
     }
     
 
@@ -82,7 +94,7 @@ class FirebaseWorker {
             let firebaseImagePath = userDefaults.string(forKey: "FirebaseImagePath")
             if let firebaseImagePath = firebaseImagePath {
                 
-                let uploadRef = Storage.storage().reference().child("\(firebaseImagePath)\(withImageName)")
+                let uploadRef = self.storage.reference().child("\(firebaseImagePath)\(withImageName)")
                 downloadGroup.enter()
                 _ = uploadRef.putData(imageData, metadata: nil) { metadata,
                     error in

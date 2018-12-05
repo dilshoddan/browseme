@@ -70,22 +70,22 @@
          contextName = "NotificationsView.SetControlDefaults():NotificationsView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "Date().ToString(dateFormat: &quot;dd-MMM-yyyy&quot;)">
+               value = "today!">
             </PersistentString>
             <PersistentString
                value = "Date()">
             </PersistentString>
             <PersistentString
-               value = "dateLabel.text">
+               value = "String(describing: Date())">
             </PersistentString>
             <PersistentString
                value = "formatter.date(Date())">
             </PersistentString>
             <PersistentString
-               value = "today!">
+               value = "Date().ToString(dateFormat: &quot;dd-MMM-yyyy&quot;)">
             </PersistentString>
             <PersistentString
-               value = "String(describing: Date())">
+               value = "dateLabel.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -97,6 +97,14 @@
             </PersistentString>
             <PersistentString
                value = "addRecordView.imageNameLabel.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FirebaseWorker.ReadFirebaseNotificationData(writeTo:):FirebaseWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "userDefaults.string(forKey: &quot;FirebaseNotificationPath&quot;)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -143,6 +151,14 @@
          <PersistentStrings>
             <PersistentString
                value = "self.fileUploaded">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in FirebaseWorker.ReadFirebaseNotificationData(writeTo:):FirebaseWorker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "((data.value as? [String: String])!)[&quot;imageUrl&quot;]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
