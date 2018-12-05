@@ -9,13 +9,10 @@
 import UIKit
 import WebKit
 import Stevia
-import FirebaseDatabase
 import Hero
 
 
 class MainViewController: UIViewController, WKNavigationDelegate {
-    
-    private var databaseReference: DatabaseReference!
     private var mainView: MainView!
     private var firebaseWorked: FirebaseWorker!
     
@@ -29,13 +26,10 @@ class MainViewController: UIViewController, WKNavigationDelegate {
         hero.isEnabled = true
         SetControllerDefaults()
         render()
-//        SetFirebaseDefaults()
         RedirectTo("https://www.apple.com")
-//        firebaseWorked.CreateRecordIntoFirebase(databaseReference)
     }
     
     func SetFirebaseDefaults(){
-        databaseReference = Database.database().reference()
         firebaseWorked = FirebaseWorker()
     }
     

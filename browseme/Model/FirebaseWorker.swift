@@ -10,9 +10,12 @@ import Foundation
 import FirebaseDatabase
 import FirebaseStorage
 
-class FirebaseWorker{
+class FirebaseWorker {
+    
     private var imageNameLabel: UITextField!
     public var fileUploaded: Bool!
+    private var databaseReference: DatabaseReference!
+    public let userDefaults = UserDefaults.standard
     
     private var databaseHandle: DatabaseHandle!
     public var returnedData: [String]!
@@ -21,15 +24,11 @@ class FirebaseWorker{
         returnedData = []
         fileUploaded = false
         imageNameLabel = UITextField()
+        databaseReference = Database.database().reference()
     }
     
-    public func CreateRecordIntoFirebase(_ databaseReference: DatabaseReference){
-        databaseReference.child("name").childByAutoId().setValue("Nigel")
-        databaseReference.child("name").childByAutoId().setValue("Richard")
-    }
     
-    public func CreateANotification(_ databaseReference: DatabaseReference, date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController) {
-        let userDefaults = UserDefaults.standard
+    public func CreateANotification(date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController) {
         let firebaseImagePath = userDefaults.string(forKey: "FirebaseImagePath")
         if let firebaseImagePath = firebaseImagePath {
             if fileUploaded {
@@ -58,20 +57,24 @@ class FirebaseWorker{
     
     
     
-    public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textView: UITextView){
-        //var dbHandle =
+    public func ReadFirebaseNotificationData(writeTo textView: UITextView) -> [String: Any] {
         self.returnedData = []
-        databaseReference.child("name").queryLimited(toLast: 1).observe(.childAdded, with: {(data) in
-            let name = (data.value as? String)!
-            self.returnedData.append(name)
-            textView.text = name
-        })
+        let notificationsPath = userDefaults.string(forKey: "FirebaseNotificationPath")
+        if let notificationsPath = notificationsPath {
+            databaseReference.child(notificationsPath).queryLimited(toLast: 1).observe(.childAdded, with: {(data) in
+                let name = (data.value as? String)!
+                self.returnedData.append(name)
+                textView.text = name
+            })
+        }
+        return [String: Any]()
     }
     
-    public func uploadImage(_ databaseReference: DatabaseReference, date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController) {
+
+    
+    public func uploadImage(date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController) {
         DispatchQueue.global(qos: .userInitiated).async {
             var storedError: Error?
-            // 2
             let downloadGroup = DispatchGroup()
             self.fileUploaded = false
             let imageData = selectedImage.jpegData(compressionQuality: 1.0)!
@@ -87,17 +90,33 @@ class FirebaseWorker{
                         self.fileUploaded = false
                         storedError = error
                     }
-                    // 4
                     downloadGroup.leave()
                 }
             }
             downloadGroup.wait()
             DispatchQueue.main.async{
                 self.fileUploaded = true
-                self.CreateANotification(databaseReference, date: date, notes: notes, selectedImage: selectedImage, withImageName: withImageName, viewController: viewController)
+                self.CreateANotification(date: date, notes: notes, selectedImage: selectedImage, withImageName: withImageName, viewController: viewController)
             }
         }
         
     }
     
 }
+
+
+//public func ReadFirebaseNotificationData(with databaseReference: DatabaseReference, writeTo textView: UITextView){
+//    //var dbHandle =
+//    self.returnedData = []
+//    databaseReference.child("name").queryLimited(toLast: 1).observe(.childAdded, with: {(data) in
+//        let name = (data.value as? String)!
+//        self.returnedData.append(name)
+//        textView.text = name
+//    })
+//}
+
+
+//    public func CreateRecordIntoFirebase(_ databaseReference: DatabaseReference){
+//        databaseReference.child("name").childByAutoId().setValue("Nigel")
+//        databaseReference.child("name").childByAutoId().setValue("Richard")
+//    }

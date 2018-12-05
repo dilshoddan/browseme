@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         FirebaseApp.configure()
         userDefaults.set("images/notificationImages/", forKey: "FirebaseImagePath")
+        userDefaults.set("notifications/notification", forKey: "FirebaseNotificationPath")
         return true
     }
 

@@ -9,12 +9,10 @@
 import UIKit
 import Hero
 import Stevia
-import FirebaseDatabase
 
 class NotificationsViewController: UIViewController {
-
+    
     private var notificationsView: NotificationsView!
-    private var databaseReference: DatabaseReference!
     private var firebaseWorker: FirebaseWorker!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,12 +27,11 @@ class NotificationsViewController: UIViewController {
         render()
         
         SetFirebaseDefaults()
-        firebaseWorker.ReadFirebaseNotificationData(with: databaseReference, writeTo: notificationsView.textView)
+        firebaseWorker.ReadFirebaseNotificationData(writeTo: notificationsView.textView)
         
     }
     
     func SetFirebaseDefaults(){
-        databaseReference = Database.database().reference()
         firebaseWorker = FirebaseWorker()
     }
     
@@ -59,13 +56,4 @@ class NotificationsViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    
-    
-//    func AddTapGestures(){
-//        notificationsView.backLabel.isEnabled = true
-//        notificationsView.backLabel.isUserInteractionEnabled = true
-//        let backLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(BackLabelAction(recognizer:)))
-//        notificationsView.backLabel.addGestureRecognizer(backLabelTapGesture)
-//    }
-
 }
