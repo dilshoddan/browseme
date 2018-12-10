@@ -84,8 +84,6 @@ class FirebaseWorker {
                 })
                 downloadGroup.wait()
             }
-            DispatchQueue.main.async{
-            }
         }
         
     }
@@ -110,6 +108,7 @@ class FirebaseWorker {
             DispatchQueue.main.async{
                 activityIndicator.stopAnimating()
                 activityIndicator.isHidden = true
+                activityIndicator.removeFromSuperview()
             }
         }
     }

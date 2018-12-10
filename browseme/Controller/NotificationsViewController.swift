@@ -48,24 +48,6 @@ class NotificationsViewController: UIViewController {
         
     }
     
-    func createSpinnerView() {
-        let child = SpinnerViewController()
-        
-        // add the spinner view controller
-        addChild(child)
-        child.view.frame = view.frame
-        view.addSubview(child.view)
-        child.didMove(toParent: self)
-        
-        // wait two seconds to simulate some work happening
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            // then remove the spinner view controller
-            child.willMove(toParent: nil)
-            child.view.removeFromSuperview()
-            child.removeFromParent()
-        }
-    }
-    
     func render(){
         view.sv(notificationsView)
         notificationsView.height(100%).width(100%).centerInContainer()

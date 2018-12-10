@@ -18,7 +18,6 @@
 		84100F3821A937E900A24666 /* browsemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84100F3721A937E900A24666 /* browsemeUITests.swift */; };
 		841AB34521AE79D100CDEBC5 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AB34421AE79D100CDEBC5 /* NotificationsView.swift */; };
 		841AB34721AE7F4A00CDEBC5 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841AB34621AE7F4900CDEBC5 /* NotificationsViewController.swift */; };
-		842799A821BED12A0048C7C7 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842799A721BED12A0048C7C7 /* SpinnerViewController.swift */; };
 		842EC08F21A950D0003E2B7C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EC08E21A950D0003E2B7C /* MainNavigationController.swift */; };
 		8436F83C21AD83800061763B /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436F83B21AD83800061763B /* ColorConstants.swift */; };
 		844AB68321AFE8560083961F /* FirebaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB68121AFE8560083961F /* FirebaseWorker.swift */; };
@@ -68,7 +67,6 @@
 		84100F3921A937E900A24666 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		841AB34421AE79D100CDEBC5 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		841AB34621AE7F4900CDEBC5 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
-		842799A721BED12A0048C7C7 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		842EC08E21A950D0003E2B7C /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		8436F83B21AD83800061763B /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		844AB68121AFE8560083961F /* FirebaseWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseWorker.swift; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 				84100F1921A937E700A24666 /* MainViewController.swift */,
 				842EC08E21A950D0003E2B7C /* MainNavigationController.swift */,
 				844D4F3621AED1A2007755C5 /* AddRecordViewController.swift */,
-				842799A721BED12A0048C7C7 /* SpinnerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -469,7 +466,6 @@
 				84100F1A21A937E700A24666 /* MainViewController.swift in Sources */,
 				84EA733821B1706E00581282 /* notificationsStructure.json in Sources */,
 				84043EAC21A9395800349BD2 /* MainView.swift in Sources */,
-				842799A821BED12A0048C7C7 /* SpinnerViewController.swift in Sources */,
 				844D4F3721AED1A2007755C5 /* AddRecordViewController.swift in Sources */,
 				842EC08F21A950D0003E2B7C /* MainNavigationController.swift in Sources */,
 				844AB68321AFE8560083961F /* FirebaseWorker.swift in Sources */,
