@@ -43,11 +43,11 @@ class FirebaseWorker {
                 activityIndicator.stopAnimating()
                 activityIndicator.isHidden = true
                 activityIndicator.removeFromSuperview()
-                let alertController = UIAlertController(title: "Saved", message: "", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                    print("Saved")
-                }))
-                viewController.present(alertController, animated: true, completion: nil)
+//                let alertController = UIAlertController(title: "Saved", message: "", preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+//                    print("Saved")
+//                }))
+//                viewController.present(alertController, animated: true, completion: nil)
             }
             else {
                 let alertController = UIAlertController(title: "Sorry, cannot save now", message: "Please wait while the image saved to the server", preferredStyle: .alert)

@@ -90,7 +90,6 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // will run if the user hits cancel
         picker.dismiss(animated: true, completion: nil)
     }
     
