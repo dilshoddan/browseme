@@ -91,7 +91,7 @@ class NotificationsView: UIView {
             dateLabel.height(5%).width(80%).left(2%)
             addRecordButtton.height(6%).width(50%).right(2%).bottom(2%)
             backButton.height(4%).width(18%).top(6%)
-            activityIndicator.height(100%).width(100%)
+            activityIndicator.height(100%).width(100%).centerHorizontally().centerVertically()
             
             
         }

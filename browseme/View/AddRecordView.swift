@@ -22,6 +22,7 @@ class AddRecordView: UIView {
     public var notes: UITextView!
     public var saveToFirebase: UIButton!
     public var backButton: UIButton!
+    public var activityIndicator: UIActivityIndicatorView!
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -80,11 +81,15 @@ class AddRecordView: UIView {
         backButton.clipsToBounds = true
         backButton.isEnabled = true
         backButton.isUserInteractionEnabled = true
+        
+        activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.isHidden = true
     }
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([imageView, notes, dateTextField, saveToFirebase, imageNameLabel, backButton])
+            self.sv([imageView, notes, dateTextField, saveToFirebase, imageNameLabel, backButton, activityIndicator])
             
             imageView.Top == self.Top
             imageView.Bottom == notes.Top
@@ -103,6 +108,7 @@ class AddRecordView: UIView {
             saveToFirebase.height(6%).width(45%).right(2%).bottom(2%)
             imageNameLabel.height(3%).width(50%).top(4%)
             backButton.height(4%).width(18%).top(6%)
+            activityIndicator.height(100%).width(100%).centerHorizontally().centerVertically()
             
         }
         super.updateConstraints()

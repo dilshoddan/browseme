@@ -31,7 +31,7 @@ class FirebaseWorker {
     }
     
     
-    public func CreateANotification(date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController) {
+    public func CreateANotification(date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController, _ activityIndicator: UIActivityIndicatorView) {
         if let firebaseImagePath = firebaseImagePath {
             if fileUploaded {
                 let notificationJSON: [String : String] = [
@@ -40,6 +40,9 @@ class FirebaseWorker {
                     "notes": notes
                 ]
                 databaseReference.child("notifications").child("notification").childByAutoId().setValue(notificationJSON)
+                activityIndicator.stopAnimating()
+                activityIndicator.isHidden = true
+                activityIndicator.removeFromSuperview()
                 let alertController = UIAlertController(title: "Saved", message: "", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                     print("Saved")
@@ -115,7 +118,7 @@ class FirebaseWorker {
     
     
     
-    public func uploadImage(date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController) {
+    public func uploadImage(date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController, _ activityIndicator: UIActivityIndicatorView) {
         DispatchQueue.global(qos: .userInitiated).async {
             let downloadGroup = DispatchGroup()
             self.fileUploaded = false
@@ -137,7 +140,7 @@ class FirebaseWorker {
             downloadGroup.wait()
             DispatchQueue.main.async{
                 self.fileUploaded = true
-                self.CreateANotification(date: date, notes: notes, selectedImage: selectedImage, withImageName: withImageName, viewController: viewController)
+                self.CreateANotification(date: date, notes: notes, selectedImage: selectedImage, withImageName: withImageName, viewController: viewController, activityIndicator)
             }
         }
         

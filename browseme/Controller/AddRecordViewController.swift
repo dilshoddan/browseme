@@ -61,7 +61,9 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         let image = addRecordView.imageView.image
         let imageName = addRecordView.imageNameLabel.text
         if let date = date, let notes = notes, let image = image, let imageName = imageName,!(imageName.isEmpty){
-            firebaseWorker.uploadImage(date: date, notes: notes, selectedImage: image, withImageName: imageName, viewController: self)
+            addRecordView.activityIndicator.isHidden = false
+            addRecordView.activityIndicator.startAnimating()
+            firebaseWorker.uploadImage(date: date, notes: notes, selectedImage: image, withImageName: imageName, viewController: self, addRecordView.activityIndicator)
             //CreateANotification(databaseReference, date: date, notes: notes, selectedImage: image, withImageName: imageName, viewController: self)
         }
         else{
