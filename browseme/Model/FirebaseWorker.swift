@@ -63,11 +63,11 @@ class FirebaseWorker {
     
     
     public func ReadFirebaseNotificationData(_ notificationDate: UILabel, _ notificationNotes: UITextView, _ notificationImageView: UIImageView, _ activityIndicator: UIActivityIndicatorView) {
-        DispatchQueue.global(qos: .userInitiated).async {
+//        DispatchQueue.global(qos: .userInitiated).async {
             self.notificationReturnValue = [String: Any]()
             if let notificationsPath = self.notificationsPath {
-                let downloadGroup = DispatchGroup()
-                downloadGroup.enter()
+//                let downloadGroup = DispatchGroup()
+//                downloadGroup.enter()
                 self.databaseReference.child(notificationsPath).queryLimited(toLast: 1).observe(.childAdded, with:
                     {(data) in
                         self.notificationReturnValue = (data.value as? [String: Any])!
@@ -83,11 +83,11 @@ class FirebaseWorker {
                             //max size 40MB
                             
                         }
-                        downloadGroup.leave()
+//                        downloadGroup.leave()
                 })
-                downloadGroup.wait()
+//                downloadGroup.wait()
             }
-        }
+//        }
         
     }
     
