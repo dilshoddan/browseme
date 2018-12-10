@@ -14,6 +14,7 @@ class NotificationsViewController: UIViewController {
     
     private var notificationsView: NotificationsView!
     private var firebaseWorker: FirebaseWorker!
+    private var activityIndicator: UIActivityIndicatorView!
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
@@ -27,9 +28,6 @@ class NotificationsViewController: UIViewController {
         SetControlDefaults()
         render()
         
-        
-        
-        
     }
     
     func SetFirebaseDefaults(){
@@ -40,9 +38,32 @@ class NotificationsViewController: UIViewController {
         notificationsView = NotificationsView(frame: view.bounds)
         notificationsView.addRecordButtton.addTarget(self, action: #selector(AddRecordAction), for: .touchUpInside)
         notificationsView.backButton.addTarget(self, action: #selector(BackButtonTapped), for: .touchUpInside)
-        firebaseWorker.ReadFirebaseNotificationData(notificationsView.dateLabel, notificationsView.textView, notificationsView.imageView)
+        
+        notificationsView.activityIndicator.isHidden = false
+        notificationsView.activityIndicator.startAnimating()
+//        createSpinnerView()
+        firebaseWorker.ReadFirebaseNotificationData(notificationsView.dateLabel, notificationsView.textView, notificationsView.imageView, notificationsView.activityIndicator)
         
         
+        
+    }
+    
+    func createSpinnerView() {
+        let child = SpinnerViewController()
+        
+        // add the spinner view controller
+        addChild(child)
+        child.view.frame = view.frame
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+        
+        // wait two seconds to simulate some work happening
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            // then remove the spinner view controller
+            child.willMove(toParent: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParent()
+        }
     }
     
     func render(){

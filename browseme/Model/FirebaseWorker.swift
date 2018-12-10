@@ -59,53 +59,62 @@ class FirebaseWorker {
     
     
     
-    public func ReadFirebaseNotificationData(_ notificationDate: UILabel, _ notificationNotes: UITextView, _ notificationImageView: UIImageView) {
+    public func ReadFirebaseNotificationData(_ notificationDate: UILabel, _ notificationNotes: UITextView, _ notificationImageView: UIImageView, _ activityIndicator: UIActivityIndicatorView) {
         DispatchQueue.global(qos: .userInitiated).async {
             self.notificationReturnValue = [String: Any]()
             if let notificationsPath = self.notificationsPath {
                 let downloadGroup = DispatchGroup()
                 downloadGroup.enter()
-                self.databaseReference.child(notificationsPath).queryLimited(toLast: 1).observe(.childAdded, with: {(data) in
-                    self.notificationReturnValue = (data.value as? [String: Any])!
-                    let imageUrl = (self.notificationReturnValue["imageUrl"] as? String)
-                    let date = (self.notificationReturnValue["date"] as? String)
-                    let notes = (self.notificationReturnValue["notes"] as? String)
-                    if let date = date, let notes = notes {
-                        notificationDate.text = date
-                        notificationNotes.text = notes
-                    }
-                    if let imageUrl = imageUrl {
-                        self.ReadFirebaseNotificationImage(imageUrl, notificationImageView)
-                        //max size 40MB
+                self.databaseReference.child(notificationsPath).queryLimited(toLast: 1).observe(.childAdded, with:
+                    {(data) in
+                        self.notificationReturnValue = (data.value as? [String: Any])!
+                        let imageUrl = (self.notificationReturnValue["imageUrl"] as? String)
+                        let date = (self.notificationReturnValue["date"] as? String)
+                        let notes = (self.notificationReturnValue["notes"] as? String)
+                        if let date = date, let notes = notes {
+                            notificationDate.text = date
+                            notificationNotes.text = notes
+                        }
+                        if let imageUrl = imageUrl {
+                            self.ReadFirebaseNotificationImage(imageUrl, notificationImageView, activityIndicator)
+                            //max size 40MB
+                            
+                        }
                         downloadGroup.leave()
-                    }
                 })
                 downloadGroup.wait()
+            }
+            DispatchQueue.main.async{
             }
         }
         
     }
     
-    public func ReadFirebaseNotificationImage(_ imageUrl: String, _ notificationImageView: UIImageView){
+    public func ReadFirebaseNotificationImage(_ imageUrl: String, _ notificationImageView: UIImageView, _ activityIndicator: UIActivityIndicatorView){
         DispatchQueue.global(qos: .userInitiated).async {
             let downloadGroup = DispatchGroup()
             downloadGroup.enter()
-            self.storage.reference(withPath: imageUrl).getData(maxSize: (40*1024*1024), completion: { data, error in
+            self.storage.reference(withPath: imageUrl).getData(maxSize: (40*1024*1024), completion:
+                { data, error in
                 if error == nil {
                     if let data = data {
                         let image = UIImage(data: data)!
                         self.notificationReturnValue["image"] = image
                         notificationImageView.image = image
-                        downloadGroup.leave()
+                        
                     }
                 }
-                
+                downloadGroup.leave()
             })
             downloadGroup.wait()
+            DispatchQueue.main.async{
+                activityIndicator.stopAnimating()
+                activityIndicator.isHidden = true
+            }
         }
     }
     
-
+    
     
     public func uploadImage(date: String, notes: String, selectedImage: UIImage, withImageName: String, viewController: UIViewController) {
         DispatchQueue.global(qos: .userInitiated).async {

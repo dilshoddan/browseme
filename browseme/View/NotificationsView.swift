@@ -18,6 +18,7 @@ class NotificationsView: UIView {
     public var textView: UITextView!
     public var addRecordButtton: UIButton!
     public var backButton: UIButton!
+    public var activityIndicator: UIActivityIndicatorView!
     
     
     
@@ -65,11 +66,16 @@ class NotificationsView: UIView {
         backButton.clipsToBounds = true
         backButton.isEnabled = true
         backButton.isUserInteractionEnabled = true
+        
+        activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.isHidden = true
+        
     }
     
     override func updateConstraints(){
         if(shouldSetupConstraints){
-            self.sv([imageView, textView, dateLabel, addRecordButtton, backButton])
+            self.sv([imageView, textView, dateLabel, addRecordButtton, backButton, activityIndicator])
             
             dateLabel.Bottom == imageView.Bottom
             imageView.Top == self.Top
@@ -85,7 +91,7 @@ class NotificationsView: UIView {
             dateLabel.height(5%).width(80%).left(2%)
             addRecordButtton.height(6%).width(50%).right(2%).bottom(2%)
             backButton.height(4%).width(18%).top(6%)
-            
+            activityIndicator.height(100%).width(100%)
             
             
         }
