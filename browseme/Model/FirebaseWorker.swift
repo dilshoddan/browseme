@@ -43,11 +43,11 @@ class FirebaseWorker {
                 activityIndicator.stopAnimating()
                 activityIndicator.isHidden = true
                 activityIndicator.removeFromSuperview()
-//                let alertController = UIAlertController(title: "Saved", message: "", preferredStyle: .alert)
-//                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-//                    print("Saved")
-//                }))
-//                viewController.present(alertController, animated: true, completion: nil)
+                let alertController = UIAlertController(title: "Saved", message: "Image saved to Firebase", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    print("Saved")
+                }))
+                viewController.present(alertController, animated: true, completion: nil)
             }
             else {
                 let alertController = UIAlertController(title: "Sorry, cannot save now", message: "Please wait while the image saved to the server", preferredStyle: .alert)
@@ -63,11 +63,8 @@ class FirebaseWorker {
     
     
     public func ReadFirebaseNotificationData(_ notificationDate: UILabel, _ notificationNotes: UITextView, _ notificationImageView: UIImageView, _ activityIndicator: UIActivityIndicatorView) {
-//        DispatchQueue.global(qos: .userInitiated).async {
             self.notificationReturnValue = [String: Any]()
             if let notificationsPath = self.notificationsPath {
-//                let downloadGroup = DispatchGroup()
-//                downloadGroup.enter()
                 self.databaseReference.child(notificationsPath).queryLimited(toLast: 1).observe(.childAdded, with:
                     {(data) in
                         self.notificationReturnValue = (data.value as? [String: Any])!
@@ -80,15 +77,9 @@ class FirebaseWorker {
                         }
                         if let imageUrl = imageUrl {
                             self.ReadFirebaseNotificationImage(imageUrl, notificationImageView, activityIndicator)
-                            //max size 40MB
-                            
                         }
-//                        downloadGroup.leave()
                 })
-//                downloadGroup.wait()
             }
-//        }
-        
     }
     
     public func ReadFirebaseNotificationImage(_ imageUrl: String, _ notificationImageView: UIImageView, _ activityIndicator: UIActivityIndicatorView){
